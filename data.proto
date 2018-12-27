@@ -27,7 +27,7 @@ message Data {
         BATTERY = 5;
         CALL_LOG = 6;
         NETWORK_CONNECTIVITY = 7;
-        DATA_TRAFFIC = 9;
+        DATA_TRAFFIC = 8;
         DEVICE_EVENT = 9;
         LOCATION = 10;
         MEDIA_GENERATION_EVENT = 11;
