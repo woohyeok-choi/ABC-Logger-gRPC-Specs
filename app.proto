@@ -3,9 +3,9 @@ syntax = "proto3";
 package kaist.iclab.abc;
 
 option java_package = "kaist.iclab.abc.grpc";
-option java_multile_files = true;
+option java_multiple_files = true;
 
-import "google/protobuf/emtpy.proto";
+import "google/protobuf/empty.proto";
 
 message App {
     enum Platform {
