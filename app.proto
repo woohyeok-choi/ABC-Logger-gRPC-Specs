@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+package kaist.iclab.abc;
+
+option java_package = "kaist.iclab.abc.grpc";
+option java_multile_files = true;
+
+import "google/protobuf/emtpy.proto";
+
+message App {
+    enum Platform {
+        UNKNOWN_PLATFORM = 0;
+        MOBILE_ANDROID = 1;
+        MOBILE_IOS = 2;
+        MOBILE_FITBIT = 3;
+        COMPUTER_WINDOWS = 4;
+        COMPUTER_IOS = 5;
+        COMPUTER_LINUX = 6;
+        WEB = 7;
+        OTHER = 8;
+    }
+
+    Platform platform = 1;
+    string version = 2;
+    int64 release_millis = 3;
+    string url = 4;
+    string changes = 5;
+}
+
+message AppRequest {
+    message List {
+        App.Platform platform = 1;
+        int64 from_millis = 2;
+        int64 to_millis = 3;
+        int32 limit = 4;
+    }
+
+    message Create {
+        App app = 1;
+    }
+
+    message Get {
+        App.Platform platform = 1;
+        string version = 2;
+    }
+
+    message Update {
+        App app = 1;
+    }
+
+    message Delete {
+        App.Platform platform = 1;
+        string version = 2;
+    }
+}
+
+service AppCalls {
+    rpc ListApp(AppRequest.List) returns (stream App) { }
+    rpc CreateApp(AppRequest.Create) returns (App) { }
+    rpc GetApp(AppRequest.Get) returns (App) { }
+    rpc UpdateApp(AppRequest.Update) returns (App) { }
+    rpc DeleteApp(AppRequest.Delete) returns (google.protobuf.Empty) { }
+}

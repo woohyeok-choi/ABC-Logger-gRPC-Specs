@@ -1,0 +1,312 @@
+syntax = "proto3";
+
+package kaist.iclab.abc;
+
+option java_package = "kaist.iclab.abc.grpc";
+option java_multile_files = true;
+
+import "google/protobuf/emtpy.proto";
+
+message Data {
+    enum SourceType {
+        UNKNOWN_SOURCE = 0;
+        SMART_PHONE = 1;
+        WRIST_WORN = 2;
+        TABLET = 3;
+        COMPUTER = 4;
+        IOT_SESNOR = 5;
+        WEB_API = 6;
+    }
+
+    enum DataType {
+        UNKNOWN_DATA = 0;
+        LOG = 1;
+        APP_USAGE_EVENT = 2;
+        APP_USAGE_STATS = 3;
+        APP_INSTALLED = 4;
+        BATTERY = 5;
+        CALL_LOG = 6;
+        NETWORK_CONNECTIVITY = 7;
+        DATA_TRAFFIC = 9;
+        DEVICE_EVENT = 9;
+        LOCATION = 10;
+        MEDIA_GENERATION_EVENT = 11;
+        TEXT_MESSAGE = 12;
+        NOTIFICATION = 13;
+        ACTIVITY_EVENT = 14;
+        ACTIVITY_TRANSITION = 15;
+        WIFI = 16;
+        WEATHER = 17;
+        RAW_SENSOR = 18;
+        SURVEY_RESPONSE = 19;
+        EMOTIONAL_STATS = 20;
+        PHYSIOLOGICAL_STATS = 21;
+        BINARY_FILE = 22;
+        WEB_USAGE_STATS = 23;
+        INTERACTION_EVENT = 24;
+    }
+
+    message Log {
+        string tag = 1;
+        string message = 2;
+    }
+
+    message AppUsageEvent {
+        string package_name = 1;
+        string app_name = 2;
+        bool is_system_app = 3;
+        bool is_updated_system_app = 4;
+        string event_type = 5;
+    }
+
+    message AppUsageStats {
+        int64 start_time = 1;
+        int64 end_time = 2;
+        string package_name = 3;
+        string app_name = 4;
+        bool is_system_app = 5;
+        bool is_updated_system_app = 6;
+        int64 last_time_used = 7;
+        int64 total_time_foreground = 8;
+    }
+
+    message AppInstalled {
+        int64 first_install_time = 1;
+        int64 last_updated_time = 2;
+        string package_name = 3;
+        string app_name = 4;
+        bool is_system_app = 5;
+        bool is_updated_system_app = 6;
+    }
+
+    message Battery {
+        float level = 1;
+        int32 temperature = 2;
+        string plugged = 3;
+        string status = 4;
+    }
+
+    message CallLog {
+        string number = 1;
+        string call_type = 2;
+        int64 duration = 3;
+        string presentation = 4;
+        int64 data_usage = 5;
+        string contact = 6;
+        int32 times_contacted = 7;
+        bool is_starred = 8;
+        bool is_pinned = 9;
+    }
+
+    message NetworkConnectivity {
+        bool is_connected = 1;
+        string network_type = 2;
+    }
+
+    message DataTraffic {
+        int64 start_time = 1;
+        int64 end_time = 2;
+        int64 rx_kb = 3;
+        int64 tx_kb = 4;
+    }
+
+    message DeviceEvent {
+        string event_type = 1;
+    }
+
+    message Location {
+        double latitude = 1;
+        double longitude = 2;
+        double altitude = 3;
+        float accuracy = 4;
+        float speed = 5;
+    }
+
+    message MediaGenerationEvent {
+        string mime_type = 1;
+        string generated_by = 2;
+        string description = 3;
+    }
+
+    message TextMessage {
+        string number = 1;
+        string message_class = 2;
+        string message_box = 3;
+        string contact = 4;
+        int32 times_contacted = 5;
+        bool is_starred = 6;
+        bool is_pinned = 7;
+    }
+
+    message Notification {
+        string package_name = 1;
+        string app_name = 2;
+        bool is_system_app = 3;
+        bool is_updated_system_app = 4;
+        bool is_posted = 5;
+        string title = 6;
+        string visibility = 7;
+        string category = 8;
+        bool has_vibration = 9;
+        bool has_sound = 10;
+        string light_color = 11;
+    }
+
+    message ActivityEvent {
+        string type = 1;
+        float confidence = 2;
+    }
+
+    message ActivityTransition {
+        string activity = 1;
+        bool is_entered = 2;
+    }
+
+    message Wifi {
+        string bssid = 1;
+        string ssid = 2;
+        int32 frequency = 3;
+        int32 rssi = 4;
+    }
+
+    message Weather {
+        double latitude = 1;
+        double longitude = 2;
+        float temperature = 3;
+        float rainfall = 4;
+        string sky = 5;
+        float wind_ew = 6;
+        float wind_ns = 7;
+        float humidity = 8;
+        string rain_type = 9;
+        string lightning = 10;
+        float wind_speed = 11;
+        float wind_direction = 12;
+        float so2_value = 13;
+        float so2_grade = 14;
+        float co_value = 15;
+        float co_grade = 16;
+        float no2_value = 17;
+        float no2_grade = 18;
+        float o3_value = 19;
+        float o3_grade = 20;
+        float pm10_value = 21;
+        float pm10_grade = 22;
+        float pm25_value = 23;
+        float pm25_grade = 24;
+        float air_value = 25;
+        float air_grade = 26;
+    }
+
+    message RawSensor {
+        string type = 1;
+        double value_1 = 2;
+        double value_2 = 3;
+        double value_3 = 4;
+        double value_4 = 5;
+    }
+
+    message SurveyResponse {
+        string title = 1;
+        string message = 2;
+        int64 delivered_timestamp = 3;
+        int64 reaction_timestamp = 4;
+        int64 first_question_timestamp = 5;
+        string response = 6;
+    }
+
+    message EmotionalStats {
+        float anger = 1;
+        float contempt = 2;
+        float disgust = 3;
+        float fear = 4;
+        float happiness = 5;
+        float neutral = 6;
+        float sadness = 7;
+        float surprise = 8;
+    }
+
+    message PhysiologicalStats {
+        int64 start_time = 1;
+        int64 end_time = 2;
+        string activity = 3;
+        string type = 4;
+        float value = 5;
+    }
+
+    message BinaryFile {
+        int64 size = 1;
+        string mime_type = 2;
+        string meta_data = 3;
+        string description = 4;
+        bytes data = 5;
+    }
+
+    message WebUsageStats {
+        int64 start_time = 1;
+        int64 end_time = 2;
+        string url = 3;
+    }
+
+    message InteractionEvent {
+        string type = 1;
+    }
+
+    int64 timestamp = 1;
+    float utc_offset = 2;
+    string email = 3;
+    SourceType source_type = 4;
+    string source_info = 5;
+    string experiment_uuid = 6;
+    string experiment_group = 7;
+    string optional_info = 8;
+
+    oneof data {
+        Log log = 9;
+        AppUsageEvent app_usage_event = 10;
+        AppUsageStats app_usage_stats = 11;
+        AppInstalled app_installed = 12;
+        Battery battery = 13;
+        CallLog call_log = 14;
+        NetworkConnectivity network_connectivity = 15;
+        DataTraffic data_traffic = 16;
+        DeviceEvent device_event = 17;
+        Location location = 18;
+        MediaGenerationEvent media_generation_event = 19;
+        TextMessage text_message = 20;
+        Notification notification = 21;
+        ActivityEvent activity_event = 22;
+        ActivityTransition activity_transition = 23;
+        Wifi wifi = 24;
+        Weather weather = 25;
+        RawSensor raw_sensor = 26;
+        SurveyResponse survey_response = 27;
+        EmotionalStats emotional_stats = 28;
+        PhysiologicalStats physiological_stats = 29;
+        BinaryFile binary_file = 30;
+        WebUsageStats web_usage_stats = 31;
+        InteractionEvent interaction_event = 32;
+    }
+}
+
+message DataRequest {
+    message List {
+        repeated Data.DataType data_types = 1;
+        Data.SourceType source_types = 2;
+        string email = 3;
+        string experiment_uuid = 4;
+        string experiment_group = 5;
+        int64 from_millis = 6;
+        int64 to_millis = 7;
+        int32 limit = 8;
+    }
+
+    message Create {
+        Data data = 1;
+    }
+}
+
+service DataCalls {
+    rpc CreateData(DataRequest.Create) returns (google.protobuf.Empty) { }
+    rpc ListData(DataRequest.List) returns (stream Data) { }
+}

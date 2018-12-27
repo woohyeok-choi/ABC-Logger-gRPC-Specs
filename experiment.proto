@@ -1,0 +1,160 @@
+syntax = "proto3";
+
+package kaist.iclab.abc;
+
+option java_package = "kaist.iclab.abc.grpc";
+option java_multile_files = true;
+
+import "time.proto";
+import "google/protobuf/emtpy.proto";
+
+message Subject {
+    enum Gender {
+        UNKNOWN = 0;
+        MALE = 1;
+        FEMALE = 2;
+    }
+    string email = 1;
+    kaist.iclab.abc.LocalDate birth_date = 2;
+    Gender gender = 3;
+    string phone_number = 4;
+    string name = 5;
+    string affiliation = 6;
+    string experiment_uuid = 7;
+    string experiment_group = 8;
+    int64 participated_millis = 9;
+    int64 dropout_millis = 10;
+}
+
+message Experiment {
+    message Base {
+        string uuid = 1;
+        int64 registered_millis = 2;
+        int64 deadline_millis = 3;
+        string title = 4;
+        string affiliation = 5;
+        string web_site = 6;
+        string email = 7;
+        string phone_number = 8;
+        int32 max_subjects = 9;
+        int32 cur_subjects = 10;
+        bool is_opened = 12;
+    }
+
+    enum Blind {
+        OPEN = 0;
+        SINGLE_BLIND = 1;
+        DOUBLE_BLIND = 2;
+    }
+
+    message Group {
+        string group = 1;
+        oneof survey {
+            string json = 2;
+            string url = 3;
+        }
+    }
+
+    message Constraint {
+        Compensation compensation = 1;
+        int64 duration_millis = 2;
+        bool contains_weekend = 3;
+    }
+
+    message Compensation {
+        enum Type {
+            NONE = 0;
+            MONETARY = 1;
+            VOUCHER = 2;
+        }
+
+        enum Unit {
+            USD = 0;
+            KRW = 1;
+            JPY = 2;
+            CNY = 3;
+            EUR = 4;
+        }
+    
+        int32 amount = 1;
+        string unit = 2;
+        Type type = 3;
+        string description = 4;
+    }
+
+    Base base = 1;
+    Blind blind = 2;
+    Constraint constraint = 3;
+    repeated Group groups = 4;
+    string description = 5;
+}
+
+message ExperimentRequest {
+    message List {
+        string affiliation = 1;
+        string email = 2;
+        int64 from_millis = 3;
+        int64 to_millis = 4;
+        int32 limit = 5;
+    }
+
+    message Create {
+        Experiment experiment = 1;
+    }
+
+    message Get {
+        string uuid = 1;
+    }
+
+    message Update {
+        Experiment experiment = 1;
+    }
+
+    message Delete {
+        string uuid = 1;
+    }
+}
+
+message SubjectRequest {
+    message List {
+        string experiment_uuid = 1;
+        string experiment_group = 2;
+        int64 from_millis = 3;
+        int64 to_millis = 4;
+        int32 limit = 5;
+    }
+
+    message Create {
+        Subject subject = 1;
+    }
+
+    message Get {
+        string experiment_uuid = 1;
+        string email = 2;
+    }
+
+    message Update {
+        Subject subject = 1;
+    }
+
+    message Delete {
+        string experiment_uuid = 1;
+        string email = 2;
+    }
+}
+
+service ExperimentCalls {
+    rpc ListExperiments(ExperimentRequest.List) returns (stream Experiment) { }
+    rpc GetExperiment(ExperimentRequest.Get) returns (Experiment) { }
+    rpc CreateExperiment(ExperimentRequest.Create) returns (Experiment) { }
+    rpc UpdateExperiment(ExperimentRequest.Update) returns (Experiment) { }
+    rpc DeleteExperiment(ExperimentRequest.Delete) returns (google.protobuf.Empty) { }
+}
+
+service SubjectCalls {
+    rpc ListSubjects(SubjectRequest.List) returns (stream Subject) { }
+    rpc GetSubject(SubjectRequest.Get) returns (Subject) { }
+    rpc CreateSubject(SubjectRequest.Create) returns (Subject) { }
+    rpc UpdateSubject(SubjectRequest.Update) returns (Subject) { }
+    rpc DeleteSubject(SubjectRequest.Delete) returns (google.protobuf.Empty) { }
+}
