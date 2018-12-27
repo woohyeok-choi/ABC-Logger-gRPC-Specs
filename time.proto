@@ -3,7 +3,7 @@ syntax = "proto3";
 package kaist.iclab.abc;
 
 option java_package = "kaist.iclab.abc.grpc";
-option java_multile_files = true;
+option java_multiple_files = true;
 
 message LocalDate {
     int32 year = 1;
