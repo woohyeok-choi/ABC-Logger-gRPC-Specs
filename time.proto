@@ -29,3 +29,8 @@ message DateTime {
     int32 millisecond = 7;
     float utc_offset = 8;
 }
+
+message TimeRange {
+    int64 from_millis = 1;
+    int64 to_millis = 2;
+}

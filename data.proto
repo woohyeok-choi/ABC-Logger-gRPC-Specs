@@ -6,6 +6,7 @@ option java_package = "kaist.iclab.abc.grpc";
 option java_multiple_files = true;
 
 import "google/protobuf/empty.proto";
+import "time.proto";
 
 message Data {
     enum SourceType {
@@ -14,7 +15,7 @@ message Data {
         WRIST_WORN = 2;
         TABLET = 3;
         COMPUTER = 4;
-        IOT_SESNOR = 5;
+        IOT_SENSOR = 5;
         WEB_API = 6;
     }
 
@@ -22,12 +23,12 @@ message Data {
         UNKNOWN_DATA = 0;
         LOG = 1;
         APP_USAGE_EVENT = 2;
-        APP_USAGE_STATS = 3;
-        APP_INSTALLED = 4;
+        APP_USAGE_STAT = 3;
+        INSTALLED_APP = 4;
         BATTERY = 5;
         CALL_LOG = 6;
-        NETWORK_CONNECTIVITY = 7;
-        DATA_TRAFFIC = 8;
+        NETWORK_CONNECTION = 7;
+        DATA_USAGE_STAT = 8;
         DEVICE_EVENT = 9;
         LOCATION = 10;
         MEDIA_GENERATION_EVENT = 11;
@@ -35,14 +36,14 @@ message Data {
         NOTIFICATION = 13;
         ACTIVITY_EVENT = 14;
         ACTIVITY_TRANSITION = 15;
-        WIFI = 16;
-        WEATHER = 17;
+        WIFI_FINGERPRINT = 16;
+        WEATHER_CONDITION = 17;
         RAW_SENSOR = 18;
         SURVEY_RESPONSE = 19;
-        EMOTIONAL_STATS = 20;
-        PHYSIOLOGICAL_STATS = 21;
+        EMOTIONAL_STAT = 20;
+        PHYSIOLOGICAL_STAT = 21;
         BINARY_FILE = 22;
-        WEB_USAGE_STATS = 23;
+        WEB_USAGE_STAT = 23;
         INTERACTION_EVENT = 24;
     }
 
@@ -59,20 +60,20 @@ message Data {
         string event_type = 5;
     }
 
-    message AppUsageStats {
-        int64 start_time = 1;
-        int64 end_time = 2;
+    message AppUsageStat {
+        int64 start_millis = 1;
+        int64 end_millis = 2;
         string package_name = 3;
         string app_name = 4;
         bool is_system_app = 5;
         bool is_updated_system_app = 6;
-        int64 last_time_used = 7;
-        int64 total_time_foreground = 8;
+        int64 last_used_millis = 7;
+        int64 total_foreground_millis = 8;
     }
 
-    message AppInstalled {
-        int64 first_install_time = 1;
-        int64 last_updated_time = 2;
+    message InstalledApp {
+        int64 first_install_millis = 1;
+        int64 last_updated_millis = 2;
         string package_name = 3;
         string app_name = 4;
         bool is_system_app = 5;
@@ -89,7 +90,7 @@ message Data {
     message CallLog {
         string number = 1;
         string call_type = 2;
-        int64 duration = 3;
+        int64 duration_millis = 3;
         string presentation = 4;
         int64 data_usage = 5;
         string contact = 6;
@@ -98,14 +99,14 @@ message Data {
         bool is_pinned = 9;
     }
 
-    message NetworkConnectivity {
+    message NetworkConnection {
         bool is_connected = 1;
         string network_type = 2;
     }
 
-    message DataTraffic {
-        int64 start_time = 1;
-        int64 end_time = 2;
+    message DataUsageStat {
+        int64 start_millis = 1;
+        int64 end_millis = 2;
         int64 rx_kb = 3;
         int64 tx_kb = 4;
     }
@@ -162,14 +163,14 @@ message Data {
         bool is_entered = 2;
     }
 
-    message Wifi {
+    message WifiFingerprint {
         string bssid = 1;
         string ssid = 2;
         int32 frequency = 3;
         int32 rssi = 4;
     }
 
-    message Weather {
+    message WeatherCondition {
         double latitude = 1;
         double longitude = 2;
         float temperature = 3;
@@ -209,42 +210,38 @@ message Data {
     message SurveyResponse {
         string title = 1;
         string message = 2;
-        int64 delivered_timestamp = 3;
-        int64 reaction_timestamp = 4;
-        int64 first_question_timestamp = 5;
+        int64 delivered_millis = 3;
+        int64 reaction_millis = 4;
+        int64 first_question_millis = 5;
         string response = 6;
     }
 
-    message EmotionalStats {
-        float anger = 1;
-        float contempt = 2;
-        float disgust = 3;
-        float fear = 4;
-        float happiness = 5;
-        float neutral = 6;
-        float sadness = 7;
-        float surprise = 8;
+    message EmotionalStat {
+        int64 start_millis = 1;
+        int64 end_millis = 2;
+        string type = 3;
+        float value = 4;
     }
 
-    message PhysiologicalStats {
-        int64 start_time = 1;
-        int64 end_time = 2;
+    message PhysiologicalStat {
+        int64 start_millis = 1;
+        int64 end_millis = 2;
         string activity = 3;
         string type = 4;
         float value = 5;
     }
 
     message BinaryFile {
-        int64 size = 1;
+        int64 size_bytes = 1;
         string mime_type = 2;
         string meta_data = 3;
         string description = 4;
         bytes data = 5;
     }
 
-    message WebUsageStats {
-        int64 start_time = 1;
-        int64 end_time = 2;
+    message WebUsageStat {
+        int64 start_millis = 1;
+        int64 end_millis = 2;
         string url = 3;
     }
 
@@ -252,61 +249,66 @@ message Data {
         string type = 1;
     }
 
-    int64 timestamp = 1;
+    int64 millis = 1;
     float utc_offset = 2;
-    string email = 3;
-    SourceType source_type = 4;
-    string source_info = 5;
-    string experiment_uuid = 6;
-    string experiment_group = 7;
-    string optional_info = 8;
+    SourceType source_type = 3;
+    string source_info = 4;
+    string participation_id = 5;
+    string optional_info = 6;
 
     oneof data {
-        Log log = 9;
-        AppUsageEvent app_usage_event = 10;
-        AppUsageStats app_usage_stats = 11;
-        AppInstalled app_installed = 12;
-        Battery battery = 13;
-        CallLog call_log = 14;
-        NetworkConnectivity network_connectivity = 15;
-        DataTraffic data_traffic = 16;
-        DeviceEvent device_event = 17;
-        Location location = 18;
-        MediaGenerationEvent media_generation_event = 19;
-        TextMessage text_message = 20;
-        Notification notification = 21;
-        ActivityEvent activity_event = 22;
-        ActivityTransition activity_transition = 23;
-        Wifi wifi = 24;
-        Weather weather = 25;
-        RawSensor raw_sensor = 26;
-        SurveyResponse survey_response = 27;
-        EmotionalStats emotional_stats = 28;
-        PhysiologicalStats physiological_stats = 29;
-        BinaryFile binary_file = 30;
-        WebUsageStats web_usage_stats = 31;
-        InteractionEvent interaction_event = 32;
+        Log log = 7;
+        AppUsageEvent app_usage_event = 8;
+        AppUsageStat app_usage_stat = 9;
+        InstalledApp installed_app = 10;
+        Battery battery = 11;
+        CallLog call_log = 12;
+        NetworkConnection network_connection = 13;
+        DataUsageStat data_usage_stat = 14;
+        DeviceEvent device_event = 15;
+        Location location = 16;
+        MediaGenerationEvent media_generation_event = 17;
+        TextMessage text_message = 18;
+        Notification notification = 19;
+        ActivityEvent activity_event = 20;
+        ActivityTransition activity_transition = 21;
+        WifiFingerprint wifi_fingerprint = 22;
+        WeatherCondition weather_condition = 23;
+        RawSensor raw_sensor = 24;
+        SurveyResponse survey_response = 25;
+        EmotionalStat emotional_stat = 26;
+        PhysiologicalStat physiological_stat = 27;
+        BinaryFile binary_file = 28;
+        WebUsageStat web_usage_stat = 29;
+        InteractionEvent interaction_event = 30;
+    }
+
+    message Query {
+        message Select {
+            repeated Data.DataType data_types = 1;
+            Data.SourceType source_type = 2;
+            oneof subject {
+                string subject_uuid = 3;
+                string subject_email = 4;
+            }
+            string experiment_id = 5;
+            string experiment_group_id = 6;
+            TimeRange millis = 7;
+            int32 max_results = 8;
+            bool is_descending_order = 9;
+        }
+    }
+   
+
+    message Collection {
+        repeated Data data = 1;
+        TimeRange millis = 2;
+        int32 n_results = 3;
+        bool has_remaining = 4;
     }
 }
 
-message DataRequest {
-    message List {
-        repeated Data.DataType data_types = 1;
-        Data.SourceType source_types = 2;
-        string email = 3;
-        string experiment_uuid = 4;
-        string experiment_group = 5;
-        int64 from_millis = 6;
-        int64 to_millis = 7;
-        int32 limit = 8;
-    }
-
-    message Create {
-        Data data = 1;
-    }
-}
-
-service DataCalls {
-    rpc CreateData(DataRequest.Create) returns (google.protobuf.Empty) { }
-    rpc ListData(DataRequest.List) returns (stream Data) { }
+service DataOperations {
+    rpc CreateData(Data) returns (google.protobuf.Empty) { }
+    rpc ReadData(Data.Query.Select) returns (Data.Collection) { }
 }

@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+package kaist.iclab.abc;
+
+option java_package = "kaist.iclab.abc.grpc";
+option java_multiple_files = true;
+
+import "google/protobuf/empty.proto";
+import "time.proto";
+import "subject.proto";
+import "experiment.proto";
+
+message ParticipationInfo {
+    string id = 1;
+    string experiment_id = 2;
+    string experiment_group_id = 3;
+    string subject_id = 4;
+    int64 participated_millis = 5;
+    int64 dropout_millis = 6;
+
+    message Query {
+        message Select {
+            string experiment_id = 1;
+            string experiment_group_id = 2;
+            oneof subject_id_or_email {
+                string subject_id = 3;
+                string subject_email = 4;    
+            }
+            TimeRange participated_millis = 5;
+            int32 max_results = 6;
+            bool is_descending_order = 7;
+        }
+
+        message One {
+            string id = 1;
+        }
+
+        message CurrentOne {
+            oneof subject_id_or_email {
+                string subject_id = 3;
+                string subject_email = 4;    
+            }
+        }
+    }
+
+    message Collection {
+        repeated ParticipationInfo participation_infos = 1;
+        TimeRange participated_millis = 2;
+        int32 n_results = 3;
+        bool has_remaining = 4;
+    }
+}
+
+service ParticipationOperations {
+    rpc ReadParticipationInfos(ParticipationInfo.Query.Select) returns (ParticipationInfo.Collection) { }
+    rpc ReadParticipationInfo(ParticipationInfo.Query.One) returns (ParticipationInfo) { }
+    rpc ReadCurrentParticipationInfo(ParticipationInfo.Query.CurrentOne) returns (ParticipationInfo) { }
+    rpc CreateParticipationInfo(ParticipationInfo) returns (ParticipationInfo) { }
+    rpc UpdateParticipationInfo(ParticipationInfo) returns (ParticipationInfo) { }
+    rpc DeleteParticipationInfo(ParticipationInfo.Query.One) returns (google.protobuf.Empty) { }
+}

@@ -6,6 +6,7 @@ option java_package = "kaist.iclab.abc.grpc";
 option java_multiple_files = true;
 
 import "google/protobuf/empty.proto";
+import "time.proto";
 
 message App {
     enum Platform {
@@ -20,44 +21,39 @@ message App {
         OTHER = 8;
     }
 
-    Platform platform = 1;
-    string version = 2;
-    int64 release_millis = 3;
-    string url = 4;
-    string changes = 5;
-}
+    string uuid = 1;
+    Platform platform = 2;
+    string name = 3;
+    string version = 4;
+    int64 release_millis = 5;
+    string url = 6;
+    string changes = 7;
 
-message AppRequest {
-    message List {
-        App.Platform platform = 1;
-        int64 from_millis = 2;
-        int64 to_millis = 3;
-        int32 limit = 4;
+    message Collection {
+        repeated App apps = 1;
+        TimeRange release_millis = 2;
+        int32 n_results = 3;
+        bool has_remaining = 4;
     }
 
-    message Create {
-        App app = 1;
-    }
+    message Query {
+        message Select {
+            App.Platform platform = 1;
+            TimeRange release_millis = 2;
+            int32 max_results = 3;
+            bool is_descending_order = 4;
+        }
 
-    message Get {
-        App.Platform platform = 1;
-        string version = 2;
-    }
-
-    message Update {
-        App app = 1;
-    }
-
-    message Delete {
-        App.Platform platform = 1;
-        string version = 2;
+        message One {
+            string uuid = 1; 
+        }
     }
 }
 
-service AppCalls {
-    rpc ListApp(AppRequest.List) returns (stream App) { }
-    rpc CreateApp(AppRequest.Create) returns (App) { }
-    rpc GetApp(AppRequest.Get) returns (App) { }
-    rpc UpdateApp(AppRequest.Update) returns (App) { }
-    rpc DeleteApp(AppRequest.Delete) returns (google.protobuf.Empty) { }
+service AppOperations {
+    rpc ReadApps(App.Query.Select) returns (App.Collection) { }
+    rpc ReadApp(App.Query.One) returns (App) { }
+    rpc CreateApp(App) returns (App) { }
+    rpc UpdateApp(App) returns (App) { }
+    rpc DeleteApp(App.Query.One) returns (google.protobuf.Empty) { }
 }
