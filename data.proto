@@ -4,7 +4,6 @@ package kaist.iclab.abc;
 
 option java_package = "kaist.iclab.abc.grpc";
 option java_outer_classname = "DataProtos";
-option java_multiple_files = true;
 
 import "google/protobuf/empty.proto";
 import "time.proto";
@@ -289,7 +288,7 @@ message Data {
             repeated Data.DataType data_types = 1;
             Data.SourceType source_type = 2;
             oneof subject {
-                string subject_uuid = 3;
+                string subject_id = 3;
                 string subject_email = 4;
             }
             string experiment_id = 5;

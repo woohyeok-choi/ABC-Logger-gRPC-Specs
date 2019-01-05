@@ -3,9 +3,7 @@ syntax = "proto3";
 package kaist.iclab.abc;
 
 option java_package = "kaist.iclab.abc.grpc";
-option java_multiple_files = true;
 option java_outer_classname = "SubjectProtos";
-
 
 import "google/protobuf/empty.proto";
 import "time.proto";
@@ -17,7 +15,7 @@ message Subject {
         FEMALE = 2;
     }
 
-    string uuid = 1;
+    string id = 1;
     string email = 2;
     int64 registered_millis = 3;
     kaist.iclab.abc.LocalDate birth_date = 4;
@@ -35,7 +33,7 @@ message Subject {
 
         message One {
             oneof id_or_email {
-                string uuid = 1;
+                string id = 1;
                 string email = 2;
             }
         }
