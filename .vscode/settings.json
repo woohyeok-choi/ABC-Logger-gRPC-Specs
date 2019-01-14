@@ -1,0 +1,9 @@
+{
+    "protoc": {
+        "path": "D:/Workspace/Projects/ABC-Platform/Grpc Specs/protoc/bin/protoc",
+        "options": [
+            "--proto_path=./",
+            "--java_out=build"
+        ]
+    },
+}

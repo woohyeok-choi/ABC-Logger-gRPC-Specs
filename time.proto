@@ -9,14 +9,14 @@ message LocalDate {
     int32 year = 1;
     int32 month = 2;
     int32 day = 3;
-    float utc_offset = 4;
+    int64 utc_offset_millis = 4;
 }
 
 message LocalTime {
     int32 hour = 1;
     int32 min = 2;
     int32 second = 3;
-    float utc_offset = 4;
+    int64 utc_offset_millis = 4;
 }
 
 message DateTime {
@@ -27,7 +27,7 @@ message DateTime {
     int32 minute = 5;
     int32 second = 6;
     int32 millisecond = 7;
-    float utc_offset = 8;
+    int64 utc_offset_millis = 8;
 }
 
 message TimeRange {
