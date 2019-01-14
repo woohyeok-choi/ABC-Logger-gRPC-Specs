@@ -10,24 +10,27 @@ import "time.proto";
 
 message Experiment {
     enum Blind {
-        OPEN = 0;
-        SINGLE_BLIND = 1;
-        DOUBLE_BLIND = 2;
+        UNKNOWN_BLINDNESS = 0;
+        OPEN = 1;
+        SINGLE_BLIND = 2;
+        DOUBLE_BLIND = 3;
     }
 
     message Compensation {
         enum Type {
-            NONE = 0;
-            MONETARY = 1;
-            VOUCHER = 2;
+            UNKNOWN_TYPE = 0;
+            NONE = 1;
+            MONETARY = 2;
+            VOUCHER = 3;
         }
 
         enum Unit {
-            USD = 0;
-            KRW = 1;
-            JPY = 2;
-            CNY = 3;
-            EUR = 4;
+            UNKNOWN_UNIT = 0;
+            USD = 1;
+            KRW = 2;
+            JPY = 3;
+            CNY = 4;
+            EUR = 5;
         }
 
         oneof type {
