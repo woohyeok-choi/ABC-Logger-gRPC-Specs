@@ -72,7 +72,7 @@ message Experiment {
     string phone_number = 8;
     int32 max_subjects = 9;
     int32 cur_subjects = 10;
-    bool is_opened = 11;
+    bool is_closed = 11;
     int64 duration_millis = 12;
     bool contains_weekend = 13;
     Compensation compensation = 14;
@@ -83,7 +83,7 @@ message Experiment {
         message Select {
             string affiliation = 1;
             string email = 2;
-            bool only_available = 3; 
+            bool include_unavailable_experiments = 3; 
             bool include_detail = 4;
             TimeRange registered_millis = 5;
             int32 max_results = 6;
