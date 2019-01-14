@@ -31,9 +31,8 @@ message App {
 
     message Collection {
         repeated App apps = 1;
-        TimeRange release_millis = 2;
-        int32 n_results = 3;
-        bool has_remaining = 4;
+        int32 n_results = 2;
+        bool has_remaining = 3;
     }
 
     message Query {

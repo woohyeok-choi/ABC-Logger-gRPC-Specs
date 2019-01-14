@@ -302,9 +302,8 @@ message Data {
 
     message Collection {
         repeated Data data = 1;
-        TimeRange millis = 2;
-        int32 n_results = 3;
-        bool has_remaining = 4;
+        int32 n_results = 2;
+        bool has_remaining = 3;
     }
 }
 
