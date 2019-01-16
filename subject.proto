@@ -6,7 +6,9 @@ option java_package = "kaist.iclab.abc.grpc";
 option java_outer_classname = "SubjectProtos";
 
 import "google/protobuf/empty.proto";
+
 import "time.proto";
+import "common.proto";
 
 message Subject {
     enum Gender {
@@ -26,9 +28,8 @@ message Subject {
 
     message Query {
         message Select {
-            TimeRange registered_millis = 1;
-            int32 max_results = 2;
-            bool is_descending_order = 3;
+            Range registered_millis = 1;
+            OrderAndLimit order_and_limit = 2;
         }
 
         message One {

@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package kaist.iclab.abc;
+
+option java_package = "kaist.iclab.abc.grpc";
+option java_outer_classname = "CommonProtos";
+
+message Range {
+    bool from_inclusive = 1;
+    int64 from_millis = 2;
+    bool to_inclusive = 3;
+    int64 to_millis = 4;
+}
+
+message OrderAndLimit {
+    bool is_descending_order = 1;
+    int32 limit = 2;
+}

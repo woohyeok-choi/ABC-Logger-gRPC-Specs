@@ -6,7 +6,9 @@ option java_package = "kaist.iclab.abc.grpc";
 option java_outer_classname = "DataProtos";
 
 import "google/protobuf/empty.proto";
+
 import "time.proto";
+import "common.proto";
 
 message Data {
     enum SourceType {
@@ -285,7 +287,7 @@ message Data {
 
     message Query {
         message Select {
-            repeated Data.DataType data_types = 1;
+            Data.DataType data_type = 1;
             Data.SourceType source_type = 2;
             oneof subject {
                 string subject_id = 3;
@@ -293,13 +295,11 @@ message Data {
             }
             string experiment_id = 5;
             string experiment_group_id = 6;
-            TimeRange millis = 7;
-            int32 max_results = 8;
-            bool is_descending_order = 9;
+            Range millis = 7;
+            OrderAndLimit order_and_limit = 8;
         }
     }
    
-
     message Collection {
         repeated Data data = 1;
         int32 n_results = 2;

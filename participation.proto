@@ -6,7 +6,9 @@ option java_package = "kaist.iclab.abc.grpc";
 option java_outer_classname = "ParticipationProtos";
 
 import "google/protobuf/empty.proto";
+
 import "time.proto";
+import "common.proto";
 import "subject.proto";
 import "experiment.proto";
 
@@ -26,9 +28,8 @@ message ParticipationInfo {
                 string subject_id = 3;
                 string subject_email = 4;    
             }
-            TimeRange participated_millis = 5;
-            int32 max_results = 6;
-            bool is_descending_order = 7;
+            Range participated_millis = 5;
+            OrderAndLimit order_and_limit = 6;
         }
 
         message One {

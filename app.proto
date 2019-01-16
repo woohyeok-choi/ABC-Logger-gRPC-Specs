@@ -7,6 +7,7 @@ option java_outer_classname = "AppProtos";
 
 import "google/protobuf/empty.proto";
 import "time.proto";
+import "common.proto";
 
 message App {
     enum Platform {
@@ -38,9 +39,8 @@ message App {
     message Query {
         message Select {
             App.Platform platform = 1;
-            TimeRange release_millis = 2;
-            int32 max_results = 3;
-            bool is_descending_order = 4;
+            Range release_millis = 2;
+            OrderAndLimit order_and_limit = 3;
         }
 
         message One {
