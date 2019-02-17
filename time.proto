@@ -30,7 +30,3 @@ message DateTime {
     int64 utc_offset_millis = 8;
 }
 
-message TimeRange {
-    int64 from_millis = 1;
-    int64 to_millis = 2;
-}

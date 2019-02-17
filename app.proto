@@ -6,6 +6,7 @@ option java_package = "kaist.iclab.abc.grpc";
 option java_outer_classname = "AppProtos";
 
 import "google/protobuf/empty.proto";
+
 import "time.proto";
 import "common.proto";
 
