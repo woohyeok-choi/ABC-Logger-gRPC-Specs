@@ -168,7 +168,7 @@ message Datum {
         string title = 1;
         string message = 2;
         string timeout_policy = 3;
-        string timeout_sec = 4;
+        int64 timeout_sec = 4;
         int64 delivered_time = 5;
         int64 reaction_time = 6;
         int64 response_time = 7;
