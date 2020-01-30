@@ -1,6 +1,6 @@
 {
     "protoc": {
-        "path": "D:/Workspace/Projects/ABC-Platform/Grpc Specs/protoc/bin/protoc",
+        "path": "F:/Projects/ABC-Logger-gRPC-Specs/.vscode/protoc-3.11.2.exe",
         "options": [
             "--proto_path=./",
             "--java_out=build"

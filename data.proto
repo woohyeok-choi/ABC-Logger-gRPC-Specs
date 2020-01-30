@@ -137,7 +137,7 @@ message Datum {
     message Message {
         string number = 1;
         string message_class = 2;
-        string messgae_box = 3;
+        string message_box = 3;
         string contact_type = 4;
         bool is_starred = 5;
         bool is_pinned = 6;
