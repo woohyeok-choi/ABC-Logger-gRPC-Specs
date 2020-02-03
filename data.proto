@@ -191,32 +191,33 @@ message Datum {
         int32 rssi = 4;
     }
 
-    int64 timestamp = 1;
-    float utc_offset = 2;
-    string subject_email = 3;
-    string device_info = 4;
-
     oneof data {
-        PhysicalActivityTransition physical_activity_transition = 5;
-        PhysicalActivity physical_activity = 6;
-        AppUsageEvent app_usage_event = 7;
-        Battery battery = 8;
-        Bluetooth bluetooth = 9;
-        CallLog call_log = 10;
-        DeviceEvent device_event = 11;
-        ExternalSensor external_sensor = 12;
-        InstalledApp installed_app = 13;
-        KeyLog key_log = 14;
-        Location location = 15;
-        Media media = 16;
-        Message message = 17;
-        Notification notification = 18;
-        PhysicalStat physical_stat = 19;
-        InternalSensor internal_sensor = 20;
-        Survey survey = 21;
-        DataTraffic data_traffic = 22;
-        Wifi wifi = 23;
+        PhysicalActivityTransition physical_activity_transition = 1;
+        PhysicalActivity physical_activity = 2;
+        AppUsageEvent app_usage_event = 3;
+        Battery battery = 4;
+        Bluetooth bluetooth = 5;
+        CallLog call_log = 6;
+        DeviceEvent device_event = 7;
+        ExternalSensor external_sensor = 8;
+        InstalledApp installed_app = 9;
+        KeyLog key_log = 10;
+        Location location = 11;
+        Media media = 12;
+        Message message = 13;
+        Notification notification = 14;
+        PhysicalStat physical_stat = 15;
+        InternalSensor internal_sensor = 16;
+        Survey survey = 17;
+        DataTraffic data_traffic = 18;
+        Wifi wifi = 19;
     }
+
+    int64 timestamp = 20;
+    float utc_offset = 21;
+    string subject_email = 22;
+    string device_info = 23;
+    int64 upload_time = 24;
 
     message Query {
         message Select {
