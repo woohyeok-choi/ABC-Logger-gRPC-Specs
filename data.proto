@@ -236,20 +236,14 @@ message Datum {
             bool is_descending = 5;
         }
     }
-   
-    message Data {
-        repeated Datum data = 1;
-        int32 n_results = 2;
-        bool has_remaining = 3;
-    }
 
-    message Subjects {
-        repeated string subject_email = 1;
+    message Subject {
+        string subject_email = 1;
     }
 }
 
 service DataOperations {
     rpc CreateDatum(Datum) returns (Empty) { }
-    rpc ReadData(Datum.Query.Data) returns (Datum.Data) { }
-    rpc ReadSubjects(Datum.Query.Subjects) returns (Datum.Subjects) { }
+    rpc ReadData(Datum.Query.Data) returns (stream Datum) { }
+    rpc ReadSubjects(Datum.Query.Subjects) returns (stream Datum.Subject) { }
 }
