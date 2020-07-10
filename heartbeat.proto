@@ -6,7 +6,7 @@ import "common.proto";
 option java_package = "kaist.iclab.abclogger.grpc.proto";
 option java_outer_classname = "HeartBeat";
 
-message HeartBeat {
+message Stat {
     int64 from_timestamp = 1;
     int64 to_timestamp = 2;
     float utc_offset = 3;
@@ -14,10 +14,10 @@ message HeartBeat {
     string device_id = 5;
     string device_info = 6;
     int64 upload_time = 7;
-    repeated Stat stats = 8;
+    repeated Status statuses = 8;
 }
 
-message Stat {
+message Status {
     DataType dataType = 1;
     int64 last_time_written = 2;
     int64 n_data = 3;
