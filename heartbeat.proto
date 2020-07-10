@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package kaist.iclab.abclogger;
+import "common.proto";
+
+option java_package = "kaist.iclab.abclogger.grpc.proto";
+option java_outer_classname = "HeartBeat";
+
+message HeartBeat {
+    int64 from_timestamp = 1;
+    int64 to_timestamp = 2;
+    float utc_offset = 3;
+    string subject_email = 4;
+    string device_id = 5;
+    string device_info = 6;
+    int64 upload_time = 7;
+    repeated Stat stats = 8;
+}
+
+message Stat {
+    DataType dataType = 1;
+    int64 last_time_written = 2;
+    int64 n_data = 3;
+    bool has_started = 4;
+    string description = 5;
+}

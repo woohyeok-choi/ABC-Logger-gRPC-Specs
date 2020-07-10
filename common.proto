@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package kaist.iclab.abclogger;
+
+option java_package = "kaist.iclab.abclogger.grpc.proto";
+option java_outer_classname = "Common";
+
+message Empty { }
+
+enum DataType {
+    UNKNOWN_DATA = 0;
+    PHYSICAL_ACTIVITY_TRANSITION = 1;
+    PHYSICAL_ACTIVITY = 2;
+    APP_USAGE_EVENT = 3;
+    BATTERY = 4;
+    BLUETOOTH = 5;
+    CALL_LOG = 6;
+    DEVICE_EVENT = 7;
+    SENSOR = 8;
+    INSTALLED_APP = 9;
+    KEY_LOG = 10;
+    LOCATION = 11;
+    MEDIA = 12;
+    MESSAGE = 13;
+    NOTIFICATION = 14;
+    PHYSICAL_STAT = 15;
+    SURVEY = 16;
+    DATA_TRAFFIC = 17;
+    WIFI = 18;
+}
