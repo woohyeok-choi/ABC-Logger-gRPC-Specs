@@ -3,7 +3,7 @@ syntax = "proto3";
 package kaist.iclab.abclogger;
 
 option java_package = "kaist.iclab.abclogger.grpc.proto";
-option java_outer_classname = "Data";
+option java_outer_classname = "DataProtos";
 
 message PhysicalActivityTransition {
     string type = 1;

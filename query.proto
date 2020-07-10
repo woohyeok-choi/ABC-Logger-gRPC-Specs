@@ -8,7 +8,7 @@ import "common.proto";
 import "heartbeat.proto";
 
 option java_package = "kaist.iclab.abclogger.grpc";
-option java_outer_classname = "Grpc";
+option java_outer_classname = "GrpcProtos";
 
 
 message Query {
