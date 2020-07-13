@@ -14,7 +14,7 @@ option java_outer_classname = "GrpcProtos";
 message Query {
     message Data {
         DataType data_type = 1;
-        string subject_email = 2;
+        string email = 2;
         string device_id = 3;
         string device_info = 4;
         int64 from_time = 5;
@@ -33,7 +33,7 @@ message Query {
 
     message HeartBeats {
         DataType data_type = 1;
-        string subject_email = 2;
+        string email = 2;
         string device_id = 3;
         string device_info = 4;
         int64 from_time = 5;
@@ -53,7 +53,7 @@ message Result {
     }
 
     message HeartBeats {
-        repeated HeartBeat heart_beat = 1;
+        repeated HeartBeat heartbeat = 1;
     }
 }
 
