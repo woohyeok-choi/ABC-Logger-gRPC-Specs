@@ -17,16 +17,16 @@ message Query {
         string email = 2;
         string device_id = 3;
         string device_info = 4;
-        int64 from_time = 5;
-        int64 to_time = 6;
+        int64 from_timestamp = 5;
+        int64 to_timestamp = 6;
         int32 limit = 7;
         bool is_descending = 8;
     }
     
     message Subjects {
         DataType data_type = 1;
-        int64 from_time = 2;
-        int64 to_time = 3;
+        int64 from_timestmap = 2;
+        int64 to_timestamp = 3;
         int32 limit = 4;
         bool is_descending = 5;
     }
@@ -36,14 +36,14 @@ message Query {
         string email = 2;
         string device_id = 3;
         string device_info = 4;
-        int64 from_time = 5;
-        int64 to_time = 6;
+        int64 from_timestamp = 5;
+        int64 to_timestamp = 6;
         int32 limit = 7;
         bool is_descending = 8;
     }
 }
 
-message Result {
+message Bulk {
     message Data {
         repeated Datum data = 1;
     }
@@ -59,8 +59,18 @@ message Result {
 
 service DataOperations {
     rpc CreateDatum(Datum) returns (Empty) { }
+    rpc CreateData(Bulk.Data) returns (Empty) { }
+    rpc CreateDatumAsStream(stream Datum) returns (Empty) { }
+
     rpc CreateHeartBeat(HeartBeat) returns (Empty) { }
-    rpc ReadData(Query.Data) returns (Result.Data) { }
-    rpc ReadSubjects(Query.Subjects) returns (Result.Subjects) { }
-    rpc ReadHeartBeats(Query.HeartBeats) returns (Result.HeartBeats) { }
+    rpc CreateHeartBeats(Bulk.HeartBeats) returns (Empty) { }
+    rpc CreateHeartBeatAsStream(stream HeartBeat) returns (Empty) { }
+    
+    rpc ReadData(Query.Data) returns (Bulk.Data) { }
+    rpc ReadSubjects(Query.Subjects) returns (Bulk.Subjects) { }
+    rpc ReadHeartBeats(Query.HeartBeats) returns (Bulk.HeartBeats) { }
+
+    rpc ReadDataAsStream(Query.Data) returns (stream Datum) { }
+    rpc ReadSubjectsAsStream(Query.Subjects) returns (stream Subject) { }
+    rpc ReadHeartBeatsAsStream(Query.HeartBeats) returns (stream HeartBeat) { }
 }
