@@ -20,7 +20,7 @@ message Query {
         int64 from_timestamp = 5;
         int64 to_timestamp = 6;
         int32 limit = 7;
-        bool is_descending = 8;
+        bool is_ascending = 8;
     }
     
     message Subjects {
@@ -28,7 +28,7 @@ message Query {
         int64 from_timestmap = 2;
         int64 to_timestamp = 3;
         int32 limit = 4;
-        bool is_descending = 5;
+        bool is_ascending = 5;
     }
 
     message HeartBeats {
@@ -39,7 +39,7 @@ message Query {
         int64 from_timestamp = 5;
         int64 to_timestamp = 6;
         int32 limit = 7;
-        bool is_descending = 8;
+        bool is_ascending = 8;
     }
 }
 
