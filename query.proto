@@ -60,11 +60,11 @@ message Bulk {
 service DataOperations {
     rpc CreateDatum(Datum) returns (Empty) { }
     rpc CreateData(Bulk.Data) returns (Empty) { }
-    rpc CreateDatumAsStream(stream Datum) returns (Empty) { }
+    rpc CreateDataAsStream(stream Datum) returns (Empty) { }
 
     rpc CreateHeartBeat(HeartBeat) returns (Empty) { }
     rpc CreateHeartBeats(Bulk.HeartBeats) returns (Empty) { }
-    rpc CreateHeartBeatAsStream(stream HeartBeat) returns (Empty) { }
+    rpc CreateHeartBeatsAsStream(stream HeartBeat) returns (Empty) { }
     
     rpc ReadData(Query.Data) returns (Bulk.Data) { }
     rpc ReadSubjects(Query.Subjects) returns (Bulk.Subjects) { }
