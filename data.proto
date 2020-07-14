@@ -182,7 +182,7 @@ message Datum {
     }
 
     int64 timestamp = 20;
-    float utc_offset = 21;
+    int32 utc_offset_sec = 21;
     string email = 22;
     string device_id = 23;
     string device_info = 24;

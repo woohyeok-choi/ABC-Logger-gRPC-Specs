@@ -9,7 +9,7 @@ option java_outer_classname = "HeartBeatProtos";
 message HeartBeat {
     int64 from_timestamp = 1;
     int64 to_timestamp = 2;
-    float utc_offset = 3;
+    int32 utc_offset_sec = 3;
     string email = 4;
     string device_id = 5;
     string device_info = 6;
