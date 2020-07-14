@@ -25,7 +25,7 @@ message Query {
     
     message Subjects {
         DataType data_type = 1;
-        int64 from_timestmap = 2;
+        int64 from_timestamp = 2;
         int64 to_timestamp = 3;
         int32 limit = 4;
         bool is_ascending = 5;
