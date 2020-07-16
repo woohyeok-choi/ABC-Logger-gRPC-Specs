@@ -59,7 +59,7 @@ message Sensor {
     string name = 2;
     string type = 3;
     string description = 4;
-    repeated string values = 5;
+    repeated string value = 5;
 }
 
 message InstalledApp {
@@ -140,7 +140,7 @@ message Survey {
     int64 delivered_time = 5;
     int64 reaction_time = 6;
     int64 response_time = 7;
-    repeated Item items = 8;
+    repeated Item item = 8;
 }
 
 message DataTraffic {

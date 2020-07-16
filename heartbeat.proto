@@ -13,7 +13,7 @@ message HeartBeat {
     string device_id = 4;
     string device_info = 5;
     int64 upload_time = 6;
-    repeated Status statuses = 7;
+    repeated Status status = 7;
 }
 
 message Status {
