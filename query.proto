@@ -6,7 +6,6 @@ import "data.proto";
 import "subject.proto";
 import "common.proto";
 import "heartbeat.proto";
-
 option java_package = "kaist.iclab.abclogger.grpc";
 option java_outer_classname = "QueryProtos";
 
@@ -57,6 +56,10 @@ message Bulk {
     }
 }
 
+message Count {
+    int64 value = 1;
+}
+
 service DataOperations {
     rpc CreateDatum(Datum) returns (Empty) { }
     rpc CreateData(Bulk.Data) returns (Empty) { }
@@ -73,4 +76,8 @@ service DataOperations {
     rpc ReadDataAsStream(Query.Data) returns (stream Datum) { }
     rpc ReadSubjectsAsStream(Query.Subjects) returns (stream Subject) { }
     rpc ReadHeartBeatsAsStream(Query.HeartBeats) returns (stream HeartBeat) { }
+
+    rpc CountData(Query.Data) returns (Count) { }
+    rpc CountHeartBeat(Query.HeartBeats) returns (Count) { }
+    rpc CountSubjects(Query.Subjects) returns (Count) { }
 }
