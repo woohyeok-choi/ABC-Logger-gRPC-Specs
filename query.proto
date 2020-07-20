@@ -31,7 +31,7 @@ message Query {
     }
 
     message HeartBeats {
-        repeated DataType data_type = 1;
+        DataType data_type = 1;
         string email = 2;
         string device_id = 3;
         string device_info = 4;
