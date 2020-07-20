@@ -8,7 +8,7 @@ option java_outer_classname = "CommonProtos";
 message Empty { }
 
 enum DataType {
-    UNKNOWN_DATA = 0;
+    NOT_SPECIFIED = 0;
     PHYSICAL_ACTIVITY_TRANSITION = 1;
     PHYSICAL_ACTIVITY = 2;
     APP_USAGE_EVENT = 3;
