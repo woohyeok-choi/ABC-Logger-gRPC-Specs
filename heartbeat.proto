@@ -17,7 +17,7 @@ message HeartBeat {
 }
 
 message Status {
-    DataType dataType = 1;
+    DataType data_type = 1;
     int64 last_time_written = 2;
     int64 n_data = 3;
     bool has_started = 4;
