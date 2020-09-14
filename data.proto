@@ -31,6 +31,12 @@ message Battery {
     string health = 5;
     string plugged_type = 6;
     string status = 7;
+    int32 capacity = 8;
+    int32 charge_counter = 9;
+    int32 current_average = 10;
+    int32 current_now = 11;
+    int64 energy_counter = 12;
+    string technology = 13;
 }
 
 message Bluetooth {
@@ -57,24 +63,29 @@ message CallLog {
 
 message DeviceEvent {
     string type = 1;
-    string extra = 2;
+    map<string, string> extra = 2;
 }
 
 message Sensor {
-    string sensor_id = 1;
-    string name = 2;
-    string type = 3;
-    string description = 4;
-    repeated string value = 5;
+    string device_type = 1;
+    string value_type = 2;
+    string identifier = 3;
+    map<string, string> status = 4;
+    string value_format = 5;
+    string value_unit = 6;
+    repeated string values = 7;
 }
 
 message InstalledApp {
-    string name = 1;
-    string package_name = 2;
-    bool is_system_app = 3;
-    bool is_updated_system_app = 4;
-    int64 first_install_time = 5;
-    int64 last_update_time = 6;
+    message App {
+        string name = 1;
+        string package_name = 2;
+        bool is_system_app = 3;
+        bool is_updated_system_app = 4;
+        int64 first_install_time = 5;
+        int64 last_update_time = 6;
+    }
+    repeated App app = 1;
 }
 
 message KeyLog {
@@ -118,12 +129,19 @@ message Notification {
     bool is_system_app = 3;
     bool is_updated_system_app = 4;
     string title = 5;
-    string visibility = 6;
-    string category = 7;
-    string vibrate = 8;
-    string sound = 9;
-    string light_color = 10;
-    bool is_posted = 11;
+    string big_title = 6;
+    string text = 7;
+    string sub_text = 8;
+    string big_text = 9;
+    string summary_text = 10;
+    string info_text = 11;
+    string visibility = 12;
+    string category = 13;
+    string priority = 14;
+    string vibrate = 15;
+    string sound = 16;
+    string light_color = 17;
+    bool is_posted = 18;
 }
 
 message PhysicalStat {
@@ -131,22 +149,38 @@ message PhysicalStat {
     int64 start_time = 2;
     int64 end_time = 3;
     string value = 4;
+    string fitness_device_model = 5;
+    string fitness_device_manufacturer = 6;
+    string fitness_device_type = 7;
+    string data_source_name = 8;
+    string data_source_package_name = 9;
 }
 
 message Survey {
-    message Item {
-        string question = 1;
-        string response = 2;
+    message Response {
+        int32 index = 1;
+        string type = 2;
+        string question = 3;
+        string alt_question = 4;
+        repeated string answer = 5;
     }
-
-    string title = 1;
-    string message = 2;
-    string timeout_policy = 3;
-    int64 timeout_sec = 4;
-    int64 delivered_time = 5;
-    int64 reaction_time = 6;
+    string trigger_event = 1;
+    string cancel_event = 2;
+    int64 intended_trigger_time = 3;
+    int64 actual_trigger_time = 4;
+    int64 first_reaction_time = 5;
+    int64 last_reaction_time = 6;
     int64 response_time = 7;
-    repeated Item item = 8;
+    string url = 8;
+    string title = 9;
+    string alt_title = 10;
+    string message = 11;
+    string alt_message = 12;
+    string instruction = 13;
+    string alt_instruction = 14;
+    int64 timeout_until = 15;
+    string timeout_action = 16;
+    repeated Response response = 17;
 }
 
 message DataTraffic {
@@ -159,10 +193,13 @@ message DataTraffic {
 }
 
 message Wifi {
-    string bssid = 1;
-    string ssid = 2;
-    int32 frequency = 3;
-    int32 rssi = 4;
+    message AccessPoint {
+        string bssid = 1;
+        string ssid = 2;
+        int32 frequency = 3;
+        int32 rssi = 4;
+    }
+    repeated AccessPoint access_point = 1;    
 }
 
 message Datum {

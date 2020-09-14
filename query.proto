@@ -52,7 +52,7 @@ message Bulk {
     }
 
     message HeartBeats {
-        repeated HeartBeat heartbeat = 1;
+        repeated HeartBeat heart_beat = 1;
     }
 }
 
