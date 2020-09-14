@@ -11,8 +11,11 @@ message PhysicalActivityTransition {
 }
 
 message PhysicalActivity {
-    string type = 1;
-    int32 confidence = 2;
+    message Activity {
+        string type = 1;
+        int32 confidence = 2;
+    }
+    repeated Activity activity = 1;    
 }
 
 message AppUsageEvent {
