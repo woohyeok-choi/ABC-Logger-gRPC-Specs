@@ -74,7 +74,7 @@ message EmbeddedSensor {
     map<string, string> status = 2;
     string value_format = 3;
     string value_unit = 4;
-    repeated string values = 5;
+    repeated string value = 5;
 }
 
 
@@ -85,7 +85,7 @@ message ExternalSensor {
     map<string, string> status = 4;
     string value_format = 5;
     string value_unit = 6;
-    repeated string values = 7;
+    repeated string value = 7;
 }
 
 message InstalledApp {
