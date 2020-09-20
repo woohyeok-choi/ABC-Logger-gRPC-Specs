@@ -167,7 +167,7 @@ message Survey {
         string alt_question = 4;
         repeated string answer = 5;
     }
-    string event_time = 1;
+    int64 event_time = 1;
     string event_name = 2;
     int64 intended_trigger_time = 3;
     int64 actual_trigger_time = 4;
