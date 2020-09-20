@@ -69,7 +69,17 @@ message DeviceEvent {
     map<string, string> extra = 2;
 }
 
-message Sensor {
+message EmbeddedSensor {
+    string value_type = 1;
+    string identifier = 2;
+    map<string, string> status = 3;
+    string value_format = 4;
+    string value_unit = 5;
+    repeated string values = 6;
+}
+
+
+message ExternalSensor {
     string device_type = 1;
     string value_type = 2;
     string identifier = 3;
@@ -214,17 +224,18 @@ message Datum {
         Bluetooth bluetooth = 5;
         CallLog call_log = 6;
         DeviceEvent device_event = 7;
-        Sensor sensor = 8;
-        InstalledApp installed_app = 9;
-        KeyLog key_log = 10;
-        Location location = 11;
-        Media media = 12;
-        Message message = 13;
-        Notification notification = 14;
-        PhysicalStat physical_stat = 15;
-        Survey survey = 16;
-        DataTraffic data_traffic = 17;
-        Wifi wifi = 18;
+        EmbeddedSensor embedded_sensor = 8;
+        ExternalSensor external_sensor = 9;
+        InstalledApp installed_app = 10;
+        KeyLog key_log = 11;
+        Location location = 12;
+        Media media = 13;
+        Message message = 14;
+        Notification notification = 15;
+        PhysicalStat physical_stat = 16;
+        Survey survey = 17;
+        DataTraffic data_traffic = 18;
+        Wifi wifi = 19;
     }
 
     int64 timestamp = 30;

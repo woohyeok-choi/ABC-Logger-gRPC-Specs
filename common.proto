@@ -16,15 +16,16 @@ enum DataType {
     BLUETOOTH = 5;
     CALL_LOG = 6;
     DEVICE_EVENT = 7;
-    SENSOR = 8;
-    INSTALLED_APP = 9;
-    KEY_LOG = 10;
-    LOCATION = 11;
-    MEDIA = 12;
-    MESSAGE = 13;
-    NOTIFICATION = 14;
-    PHYSICAL_STAT = 15;
-    SURVEY = 16;
-    DATA_TRAFFIC = 17;
-    WIFI = 18;
+    EMBEDDED_SENSOR = 8;
+    EXTERNAL_SENSOR = 9;
+    INSTALLED_APP = 10;
+    KEY_LOG = 11;
+    LOCATION = 12;
+    MEDIA = 13;
+    MESSAGE = 14;
+    NOTIFICATION = 15;
+    PHYSICAL_STAT = 16;
+    SURVEY = 17;
+    DATA_TRAFFIC = 18;
+    WIFI = 19;
 }
