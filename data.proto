@@ -71,11 +71,10 @@ message DeviceEvent {
 
 message EmbeddedSensor {
     string value_type = 1;
-    string identifier = 2;
-    map<string, string> status = 3;
-    string value_format = 4;
-    string value_unit = 5;
-    repeated string values = 6;
+    map<string, string> status = 2;
+    string value_format = 3;
+    string value_unit = 4;
+    repeated string values = 5;
 }
 
 
