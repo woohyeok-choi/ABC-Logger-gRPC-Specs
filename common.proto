@@ -24,7 +24,7 @@ enum DataType {
     MEDIA = 13;
     MESSAGE = 14;
     NOTIFICATION = 15;
-    PHYSICAL_STAT = 16;
+    FITNESS = 16;
     SURVEY = 17;
     DATA_TRAFFIC = 18;
     WIFI = 19;

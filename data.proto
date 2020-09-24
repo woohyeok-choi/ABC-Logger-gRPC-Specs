@@ -156,7 +156,7 @@ message Notification {
     bool is_posted = 18;
 }
 
-message PhysicalStat {
+message Fitness {
     string type = 1;
     int64 start_time = 2;
     int64 end_time = 3;
@@ -231,7 +231,7 @@ message Datum {
         Media media = 13;
         Message message = 14;
         Notification notification = 15;
-        PhysicalStat physical_stat = 16;
+        Fitness fitness = 16;
         Survey survey = 17;
         DataTraffic data_traffic = 18;
         Wifi wifi = 19;
