@@ -6,16 +6,18 @@ import "data.proto";
 import "subject.proto";
 import "common.proto";
 import "heartbeat.proto";
+import "statistic.proto";
+
 option java_package = "kaist.iclab.abclogger.grpc";
 option java_outer_classname = "QueryProtos";
 
 
 message Query {
     message Data {
-        DataType data_type = 1;
-        string email = 2;
-        string device_id = 3;
-        string device_info = 4;
+        repeated DataType data_type = 1;
+        repeated string email = 2;
+        repeated string device_id = 3;
+        repeated string device_info = 4;
         int64 from_timestamp = 5;
         int64 to_timestamp = 6;
         int32 limit = 7;
@@ -23,7 +25,7 @@ message Query {
     }
     
     message Subjects {
-        DataType data_type = 1;
+        repeated DataType data_type = 1;
         int64 from_timestamp = 2;
         int64 to_timestamp = 3;
         int32 limit = 4;
@@ -31,14 +33,23 @@ message Query {
     }
 
     message HeartBeats {
-        DataType data_type = 1;
-        string email = 2;
-        string device_id = 3;
-        string device_info = 4;
+        repeated DataType data_type = 1;
+        repeated string email = 2;
+        repeated string device_id = 3;
+        repeated string device_info = 4;
         int64 from_timestamp = 5;
         int64 to_timestamp = 6;
         int32 limit = 7;
         bool is_ascending = 8;
+    }
+
+    message Statistics {
+        repeated DataType data_type = 1;
+        repeated string email = 2;
+        repeated string device_id = 3;
+        repeated string device_info = 4;
+        int64 from_timestamp = 5;
+        int64 to_timestamp = 6;
     }
 }
 
@@ -54,10 +65,10 @@ message Bulk {
     message HeartBeats {
         repeated HeartBeat heart_beat = 1;
     }
-}
 
-message Count {
-    int64 value = 1;
+    message Statistics {
+        repeated Statistic statistic = 1;
+    }
 }
 
 service DataOperations {
@@ -75,7 +86,5 @@ service DataOperations {
     rpc ReadSubjectsAsStream(Query.Subjects) returns (stream Subject) { }
     rpc ReadHeartBeatsAsStream(Query.HeartBeats) returns (stream HeartBeat) { }
 
-    rpc CountData(Query.Data) returns (Count) { }
-    rpc CountHeartBeat(Query.HeartBeats) returns (Count) { }
-    rpc CountSubjects(Query.Subjects) returns (Count) { }
+    rpc ReadStatistic(Query.Statistics) returns (Bulk.Statistics) { }
 }
