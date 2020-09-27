@@ -180,19 +180,18 @@ message Survey {
     string event_name = 2;
     int64 intended_trigger_time = 3;
     int64 actual_trigger_time = 4;
-    int64 first_reaction_time = 5;
-    int64 last_reaction_time = 6;
-    int64 response_time = 7;
-    string url = 8;
-    string title = 9;
-    string alt_title = 10;
-    string message = 11;
-    string alt_message = 12;
-    string instruction = 13;
-    string alt_instruction = 14;
-    int64 timeout_until = 15;
-    string timeout_action = 16;
-    repeated Response response = 17;
+    int64 reaction_time = 5;
+    int64 response_time = 6;
+    string url = 7;
+    string title = 8;
+    string alt_title = 9;
+    string message = 10;
+    string alt_message = 11;
+    string instruction = 12;
+    string alt_instruction = 13;
+    int64 timeout_until = 14;
+    string timeout_action = 15;
+    repeated Response response = 16;
 }
 
 message DataTraffic {
