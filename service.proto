@@ -24,7 +24,8 @@ message Query {
         DEVICE_MODEL = 5;
         DEVICE_VERSION = 6;
         DEVICE_OS = 7;
-        APP_VERSION = 8;
+        APP_ID = 8;
+        APP_VERSION = 9;
     }
 
     message Filter {

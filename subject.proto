@@ -13,5 +13,6 @@ message Subject {
     string device_model = 5;
     string device_version = 6;
     string device_os = 7;
-    string app_version = 8;
+    string app_id = 8;
+    string app_version = 9;
 }
