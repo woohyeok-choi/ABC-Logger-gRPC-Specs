@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package kaist.iclab.abclogger;
 
-option java_package = "kaist.iclab.abclogger.grpc";
+option java_package = "kaist.iclab.abclogger.grpc.proto";
 option java_outer_classname = "HqsProtos";
 
 message Hqs {

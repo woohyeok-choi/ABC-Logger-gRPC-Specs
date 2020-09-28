@@ -10,7 +10,7 @@ import "heart_beat.proto";
 import "hqs.proto";
 import "subject.proto";
 
-option java_package = "kaist.iclab.abclogger.grpc";
+option java_package = "kaist.iclab.abclogger.grpc.service";
 option java_outer_classname = "ServiceProtos";
 
 
