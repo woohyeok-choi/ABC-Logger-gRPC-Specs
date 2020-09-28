@@ -19,11 +19,12 @@ message Query {
         NOT_FIELD = 0;
         GROUP_NAME = 1;
         EMAIL = 2;
-        DEVICE_ID = 3;
-        MANUFACTURER = 4;
-        MODEL = 5;
-        VERSION = 6;
-        OS = 7;
+        INSTANCE_ID = 3;
+        DEVICE_MANUFACTURER = 4;
+        DEVICE_MODEL = 5;
+        DEVICE_VERSION = 6;
+        DEVICE_OS = 7;
+        APP_VERSION = 8;
     }
 
     message Filter {
