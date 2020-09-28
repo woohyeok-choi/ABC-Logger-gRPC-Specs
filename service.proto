@@ -43,7 +43,7 @@ message Query {
         bool is_ascending = 6;
     }
     
-    message Subjects {
+    message HeartBeats {
         repeated DataType data_type = 1;
         repeated Filter filter = 2;
         int64 from_timestamp = 3;
@@ -51,8 +51,8 @@ message Query {
         int32 limit = 5;
         bool is_ascending = 6;
     }
-    
-    message HeartBeats {
+
+    message Subjects {
         repeated DataType data_type = 1;
         repeated Filter filter = 2;
         int64 from_timestamp = 3;
@@ -90,12 +90,6 @@ message Bulk {
     }
 }
 
-service HqsOperations {
-    rpc GetPhysicalHqs(Query.Hqs) returns (PhysicalHqs) { }
-    rpc GetSocialHqs(Query.Hqs) returns (SocialHqs) { }
-    rpc GetDigitalHqs(Query.Hqs) returns (DigitalHqs) { }
-}
-
 service DataOperations {
     rpc CreateDatum(Datum) returns (Empty) { }
     rpc CreateData(Bulk.Data) returns (Empty) { }
@@ -105,16 +99,22 @@ service DataOperations {
     rpc ReadDataAsStream(Query.Data) returns (stream Datum) { }
 }
 
-service SubjectOperations {
-    rpc ReadSubjects(Query.Subjects) returns (Bulk.Subjects) { }
-    rpc ReadSubjectsAsStream(Query.Subjects) returns (stream Subject) { }
-}
-
 service HeartBeatsOperation {
     rpc CreateHeartBeat(HeartBeat) returns (Empty) { }
 
     rpc ReadHeartBeats(Query.HeartBeats) returns (Bulk.HeartBeats) { }
     rpc ReadHeartBeatsAsStream(Query.HeartBeats) returns (stream HeartBeat) { }
+}
+
+service AggregateOperations {
+    rpc ReadSubjects(Query.Subjects) returns (Bulk.Subjects) { }
+    rpc ReadSubjectsAsStream(Query.Subjects) returns (stream Subject) { }
 
     rpc ReadCount(Query.Counts) returns (Count) { }
+}
+
+service HqsOperations {
+    rpc ReadPhysicalHqs(Query.Hqs) returns (PhysicalHqs) { }
+    rpc ReadSocialHqs(Query.Hqs) returns (SocialHqs) { }
+    rpc ReadDigitalHqs(Query.Hqs) returns (DigitalHqs) { }
 }
