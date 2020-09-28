@@ -3,6 +3,7 @@ syntax = "proto3";
 package kaist.iclab.abclogger;
 
 import "data_type.proto";
+import "subject.proto";
 
 option java_package = "kaist.iclab.abclogger.grpc.proto";
 option java_outer_classname = "CountProtos";
@@ -10,14 +11,7 @@ option java_outer_classname = "CountProtos";
 message Count {
     message Item {
         DataType data_type = 1;
-        string group_name = 2;
-        string email = 3;
-        string device_id = 4;
-        string manufacterer = 5;
-        string model = 6;
-        string version = 7;
-        string os = 8;
-        string count = 9;
+        Subject subject = 2;
     }
     int64 total_count = 1;
     repeated Item item = 2;

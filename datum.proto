@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package kaist.iclab.abclogger;
 
+import "subject.proto";
+
 option java_package = "kaist.iclab.abclogger.grpc.proto";
 option java_outer_classname = "DatumProtos";
 
@@ -236,14 +238,6 @@ message Datum {
         Wifi wifi = 19;
     }
 
-    int64 timestamp = 30;
-    int32 utc_offset_sec = 31;
-    string group_name = 32;
-    string email = 33;
-    string device_id = 34;
-    string manufacterer = 35;
-    string model = 36;
-    string version = 37;
-    string os = 38;
-    int64 upload_time = 39;
+    Subject subject = 20;
+    int64 upload_time = 21;
 }

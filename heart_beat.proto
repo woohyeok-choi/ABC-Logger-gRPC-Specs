@@ -3,6 +3,7 @@ syntax = "proto3";
 package kaist.iclab.abclogger;
 
 import "data_type.proto";
+import "subject.proto";
 
 option java_package = "kaist.iclab.abclogger.grpc.proto";
 option java_outer_classname = "HeartBeatProtos";
@@ -10,14 +11,8 @@ option java_outer_classname = "HeartBeatProtos";
 message HeartBeat {
     int64 timestamp = 1;
     int32 utc_offset_sec = 2;
-    string group_name = 3;
-    string email = 4;
-    string device_id = 5;
-    string manufacterer = 6;
-    string model = 7;
-    string version = 8;
-    string os = 9;
-    repeated Collector collector = 10;
+    Subject subject = 3;
+    repeated Collector collector = 4;
 
     message Collector {
         DataType data_type = 1;
