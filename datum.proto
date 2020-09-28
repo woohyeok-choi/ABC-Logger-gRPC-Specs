@@ -216,28 +216,30 @@ message Wifi {
 }
 
 message Datum {
-    oneof data {
-        PhysicalActivityTransition physical_activity_transition = 1;
-        PhysicalActivity physical_activity = 2;
-        AppUsageEvent app_usage_event = 3;
-        Battery battery = 4;
-        Bluetooth bluetooth = 5;
-        CallLog call_log = 6;
-        DeviceEvent device_event = 7;
-        EmbeddedSensor embedded_sensor = 8;
-        ExternalSensor external_sensor = 9;
-        InstalledApp installed_app = 10;
-        KeyLog key_log = 11;
-        Location location = 12;
-        Media media = 13;
-        Message message = 14;
-        Notification notification = 15;
-        Fitness fitness = 16;
-        Survey survey = 17;
-        DataTraffic data_traffic = 18;
-        Wifi wifi = 19;
-    }
+    int64 timestamp = 1;
+    int32 utc_offset_sec = 2;
+    Subject subject = 3;
+    int64 upload_time = 4;
 
-    Subject subject = 20;
-    int64 upload_time = 21;
+    oneof data {
+        PhysicalActivityTransition physical_activity_transition = 11;
+        PhysicalActivity physical_activity = 12;
+        AppUsageEvent app_usage_event = 13;
+        Battery battery = 14;
+        Bluetooth bluetooth = 15;
+        CallLog call_log = 16;
+        DeviceEvent device_event = 17;
+        EmbeddedSensor embedded_sensor = 18;
+        ExternalSensor external_sensor = 19;
+        InstalledApp installed_app = 20;
+        KeyLog key_log = 21;
+        Location location = 22;
+        Media media = 23;
+        Message message = 24;
+        Notification notification = 25;
+        Fitness fitness = 26;
+        Survey survey = 27;
+        DataTraffic data_traffic = 28;
+        Wifi wifi = 29;
+    }
 }

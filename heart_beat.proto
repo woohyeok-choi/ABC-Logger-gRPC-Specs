@@ -15,14 +15,16 @@ message HeartBeat {
     repeated Collector collector = 4;
 
     message Collector {
-        DataType data_type = 1;
-        int64 turned_on_time = 2;
-        int64 last_time_written = 3;
-        int64 records_collected = 4;
-        int64 records_uploaded = 5;
-        Status status = 6;
-        string error = 7;    
-        map<string, string> others = 8;
+        string name = 1;
+        string qualified_name = 2;
+        DataType data_type = 3;
+        int64 turned_on_time = 4;
+        int64 last_time_written = 5;
+        int64 records_collected = 6;
+        int64 records_uploaded = 7;
+        Status status = 8;
+        string error = 9;    
+        map<string, string> others = 10;
     }
 
     enum Status {
