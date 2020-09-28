@@ -15,9 +15,7 @@ option java_outer_classname = "QueryProtos";
 message Query {
     message Data {
         repeated DataType data_type = 1;
-        repeated string email = 2;
-        repeated string device_id = 3;
-        repeated string device_info = 4;
+        repeated Subject subject = 2;
         int64 from_timestamp = 5;
         int64 to_timestamp = 6;
         int32 limit = 7;
@@ -34,22 +32,18 @@ message Query {
 
     message HeartBeats {
         repeated DataType data_type = 1;
-        repeated string email = 2;
-        repeated string device_id = 3;
-        repeated string device_info = 4;
-        int64 from_timestamp = 5;
-        int64 to_timestamp = 6;
-        int32 limit = 7;
-        bool is_ascending = 8;
+        repeated Subject subject = 2;
+        int64 from_timestamp = 3;
+        int64 to_timestamp = 4;
+        int32 limit = 5;
+        bool is_ascending = 6;
     }
 
     message Statistics {
         repeated DataType data_type = 1;
-        repeated string email = 2;
-        repeated string device_id = 3;
-        repeated string device_info = 4;
-        int64 from_timestamp = 5;
-        int64 to_timestamp = 6;
+        repeated Subject subject = 2;
+        int64 from_timestamp = 3;
+        int64 to_timestamp = 4;
     }
 }
 

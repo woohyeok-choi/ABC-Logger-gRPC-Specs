@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package kaist.iclab.abclogger;
+
+import "subject.proto";
+
+option java_package = "kaist.iclab.abclogger.grpc";
+option java_outer_classname = "HqsProtos";
+
+message Query {
+    int64 from_timestamp = 1;
+    int64 to_timestamp = 2;
+    Subject subject = 3;
+    repeated Subject references = 4;
+}
+
+message Hqs {
+    double value = 1;
+    double percentile = 2;
+    double mean = 3;
+    double std_dev = 4;
+    double min = 5;
+    double max = 6;    
+}
+
+message PhysicalHqs {
+    Hqs active_duration = 1;
+    Hqs inactive_duration = 2;
+    Hqs step_count = 3;
+    Hqs distance = 4;
+    Hqs calories = 5;
+}
+
+message SocialHqs {
+    Hqs call_duration = 1;
+    Hqs message_count = 2;
+    Hqs social_app_duration = 3;
+}
+
+message DigitalHqs {
+    repeated AppDuration app_duration = 1;
+    Hqs data_usage = 2;
+    Hqs phone_usage_duration = 3;
+    Hqs media_taken = 4;
+
+    message AppDuration {
+        string type = 1;
+        Hqs hqs = 2;
+    }
+}
+
+service HqsOperations {
+    rpc GetPhysicalHqs(Query) returns (PhysicalHqs) { }
+    rpc GetSocialHqs(Query) returns (SocialHqs) { }
+    rpc GetDigitalHqs(Query) returns (DigitalHqs) { }
+}
