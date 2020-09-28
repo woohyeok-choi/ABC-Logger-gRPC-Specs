@@ -12,7 +12,7 @@ option java_package = "kaist.iclab.abclogger.grpc";
 option java_outer_classname = "QueryProtos";
 
 
-message Query {
+message DataQuery {
     message Data {
         repeated DataType data_type = 1;
         repeated Subject subject = 2;
@@ -47,7 +47,7 @@ message Query {
     }
 }
 
-message Bulk {
+message DataBulk {
     message Data {
         repeated Datum data = 1;
     }
@@ -67,18 +67,18 @@ message Bulk {
 
 service DataOperations {
     rpc CreateDatum(Datum) returns (Empty) { }
-    rpc CreateData(Bulk.Data) returns (Empty) { }
+    rpc CreateData(DataBulk.Data) returns (Empty) { }
     rpc CreateDataAsStream(stream Datum) returns (Empty) { }
 
     rpc CreateHeartBeat(HeartBeat) returns (Empty) { }
     
-    rpc ReadData(Query.Data) returns (Bulk.Data) { }
-    rpc ReadSubjects(Query.Subjects) returns (Bulk.Subjects) { }
-    rpc ReadHeartBeats(Query.HeartBeats) returns (Bulk.HeartBeats) { }
+    rpc ReadData(DataQuery.Data) returns (DataBulk.Data) { }
+    rpc ReadSubjects(DataQuery.Subjects) returns (DataBulk.Subjects) { }
+    rpc ReadHeartBeats(DataQuery.HeartBeats) returns (DataBulk.HeartBeats) { }
 
-    rpc ReadDataAsStream(Query.Data) returns (stream Datum) { }
-    rpc ReadSubjectsAsStream(Query.Subjects) returns (stream Subject) { }
-    rpc ReadHeartBeatsAsStream(Query.HeartBeats) returns (stream HeartBeat) { }
+    rpc ReadDataAsStream(DataQuery.Data) returns (stream Datum) { }
+    rpc ReadSubjectsAsStream(DataQuery.Subjects) returns (stream Subject) { }
+    rpc ReadHeartBeatsAsStream(DataQuery.HeartBeats) returns (stream HeartBeat) { }
 
-    rpc ReadStatistic(Query.Statistics) returns (Bulk.Statistics) { }
+    rpc ReadStatistic(DataQuery.Statistics) returns (DataBulk.Statistics) { }
 }

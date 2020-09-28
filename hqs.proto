@@ -7,7 +7,7 @@ import "subject.proto";
 option java_package = "kaist.iclab.abclogger.grpc";
 option java_outer_classname = "HqsProtos";
 
-message Query {
+message HqsQuery {
     int64 from_timestamp = 1;
     int64 to_timestamp = 2;
     Subject subject = 3;
@@ -50,7 +50,7 @@ message DigitalHqs {
 }
 
 service HqsOperations {
-    rpc GetPhysicalHqs(Query) returns (PhysicalHqs) { }
-    rpc GetSocialHqs(Query) returns (SocialHqs) { }
-    rpc GetDigitalHqs(Query) returns (DigitalHqs) { }
+    rpc GetPhysicalHqs(HqsQuery) returns (PhysicalHqs) { }
+    rpc GetSocialHqs(HqsQuery) returns (SocialHqs) { }
+    rpc GetDigitalHqs(HqsQuery) returns (DigitalHqs) { }
 }
