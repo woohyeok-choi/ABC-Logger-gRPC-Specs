@@ -9,10 +9,11 @@ message Subject {
     string group_name = 1;
     string email = 2;
     string instance_id = 3;
-    string device_manufacturer = 4;
-    string device_model = 5;
-    string device_version = 6;
-    string device_os = 7;
-    string app_id = 8;
-    string app_version = 9;
+    string source = 4;
+    string device_manufacturer = 5;
+    string device_model = 6;
+    string device_version = 7;
+    string device_os = 8;
+    string app_id = 9;
+    string app_version = 10;
 }

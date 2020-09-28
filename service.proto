@@ -20,12 +20,13 @@ message Query {
         GROUP_NAME = 1;
         EMAIL = 2;
         INSTANCE_ID = 3;
-        DEVICE_MANUFACTURER = 4;
-        DEVICE_MODEL = 5;
-        DEVICE_VERSION = 6;
-        DEVICE_OS = 7;
-        APP_ID = 8;
-        APP_VERSION = 9;
+        SOURCE = 4;
+        DEVICE_MANUFACTURER = 5;
+        DEVICE_MODEL = 6;
+        DEVICE_VERSION = 7;
+        DEVICE_OS = 8;
+        APP_ID = 9;
+        APP_VERSION = 10;
     }
 
     message Filter {
