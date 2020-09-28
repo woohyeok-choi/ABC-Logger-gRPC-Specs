@@ -9,7 +9,7 @@ message Subject {
     string group_name = 1;
     string email = 2;
     string device_id = 3;
-    string manufacterer = 4;
+    string manufacturer = 4;
     string model = 5;
     string version = 6;
     string os = 7;
