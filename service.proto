@@ -68,7 +68,7 @@ message Query {
 
 message Bulk {
     message Data {
-        repeated Datum data = 1;
+        repeated Datum datum = 1;
     }
 
     message Subjects {
