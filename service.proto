@@ -106,11 +106,15 @@ service HeartBeatsOperation {
     rpc ReadHeartBeatsAsStream(Query.HeartBeats) returns (stream HeartBeat) { }
 }
 
-service AggregateOperations {
+service SubjectsOperations {
     rpc ReadSubjects(Query.Subjects) returns (Bulk.Subjects) { }
     rpc ReadSubjectsAsStream(Query.Subjects) returns (stream Subject) { }
+}
 
-    rpc ReadCount(Query.Counts) returns (Count) { }
+service AggregateOperations {
+    rpc CountSubjects(Query.Counts) returns (Count) { }
+    rpc CountData(Query.Counts) returns (Count) { }
+    rpc CountHeartBeats(Query.Counts) returns (Count) { }
 }
 
 service HqsOperations {
