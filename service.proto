@@ -15,64 +15,54 @@ option java_outer_classname = "ServiceProtos";
 
 
 message Query {
-    enum Field {
-        NOT_FIELD = 0;
-        GROUP_NAME = 1;
-        EMAIL = 2;
-        INSTANCE_ID = 3;
-        SOURCE = 4;
-        DEVICE_MANUFACTURER = 5;
-        DEVICE_MODEL = 6;
-        DEVICE_VERSION = 7;
-        DEVICE_OS = 8;
-        APP_ID = 9;
-        APP_VERSION = 10;
-    }
-
-    message Filter {
-        Field field = 1;
-        repeated string value = 2; 
-    }
-
-    message Data {
+    message Read {
         repeated DataType data_type = 1;
-        repeated Filter filter = 2;
-        int64 from_timestamp = 3;
-        int64 to_timestamp = 4;
-        int32 limit = 5;
-        bool is_ascending = 6;
+        repeated string group_name = 2;
+        repeated string email = 3;
+        repeated string instance_id = 4;
+        repeated string source = 5;
+        repeated string device_manufacturer = 6;
+        repeated string device_model = 7;
+        repeated string device_version = 8;
+        repeated string device_os = 9;
+        repeated string app_id = 10;
+        repeated string app_version = 11;
+        int64 from_timestamp = 12;
+        int64 to_timestamp = 13;
+        int32 limit = 14;
+        bool is_ascending = 15;
     }
     
-    message HeartBeats {
+    message Aggregate {
         repeated DataType data_type = 1;
-        repeated Filter filter = 2;
-        int64 from_timestamp = 3;
-        int64 to_timestamp = 4;
-        int32 limit = 5;
-        bool is_ascending = 6;
-    }
-
-    message Subjects {
-        repeated DataType data_type = 1;
-        repeated Filter filter = 2;
-        int64 from_timestamp = 3;
-        int64 to_timestamp = 4;
-        int32 limit = 5;
-        bool is_ascending = 6;
+        repeated string group_name = 2;
+        repeated string email = 3;
+        repeated string instance_id = 4;
+        repeated string source = 5;
+        repeated string device_manufacturer = 6;
+        repeated string device_model = 7;
+        repeated string device_version = 8;
+        repeated string device_os = 9;
+        repeated string app_id = 10;
+        repeated string app_version = 11;
+        int64 from_timestamp = 12;
+        int64 to_timestamp = 13;
     }
     
-    message Counts {
-        repeated DataType data_type = 1;
-        repeated Filter filter = 2;
-        int64 from_timestamp = 3;
-        int64 to_timestamp = 4;
-    }
-    
-    message Hqs {
+    message Compare {
         Subject subject = 1;
-        repeated Filter reference = 2;
-        int64 from_timestamp = 3;
-        int64 to_timestamp = 4;
+        repeated string ref_group_name = 2;
+        repeated string ref_email = 3;
+        repeated string ref_instance_id = 4;
+        repeated string ref_source = 5;
+        repeated string ref_device_manufacturer = 6;
+        repeated string ref_device_model = 7;
+        repeated string ref_device_version = 8;
+        repeated string ref_device_os = 9;
+        repeated string ref_app_id = 10;
+        repeated string ref_app_version = 11;
+        int64 from_timestamp = 12;
+        int64 to_timestamp = 13;
     }
 }
 
@@ -95,30 +85,30 @@ service DataOperations {
     rpc CreateData(Bulk.Data) returns (Empty) { }
     rpc CreateDataAsStream(stream Datum) returns (Empty) { }
     
-    rpc ReadData(Query.Data) returns (Bulk.Data) { }
-    rpc ReadDataAsStream(Query.Data) returns (stream Datum) { }
+    rpc ReadData(Query.Read) returns (Bulk.Data) { }
+    rpc ReadDataAsStream(Query.Read) returns (stream Datum) { }
 }
 
 service HeartBeatsOperation {
     rpc CreateHeartBeat(HeartBeat) returns (Empty) { }
 
-    rpc ReadHeartBeats(Query.HeartBeats) returns (Bulk.HeartBeats) { }
-    rpc ReadHeartBeatsAsStream(Query.HeartBeats) returns (stream HeartBeat) { }
+    rpc ReadHeartBeats(Query.Read) returns (Bulk.HeartBeats) { }
+    rpc ReadHeartBeatsAsStream(Query.Read) returns (stream HeartBeat) { }
 }
 
 service SubjectsOperations {
-    rpc ReadSubjects(Query.Subjects) returns (Bulk.Subjects) { }
-    rpc ReadSubjectsAsStream(Query.Subjects) returns (stream Subject) { }
+    rpc ReadSubjects(Query.Read) returns (Bulk.Subjects) { }
+    rpc ReadSubjectsAsStream(Query.Read) returns (stream Subject) { }
 }
 
 service AggregateOperations {
-    rpc CountSubjects(Query.Counts) returns (Count) { }
-    rpc CountData(Query.Counts) returns (Count) { }
-    rpc CountHeartBeats(Query.Counts) returns (Count) { }
+    rpc CountSubjects(Query.Aggregate) returns (Count) { }
+    rpc CountData(Query.Aggregate) returns (Count) { }
+    rpc CountHeartBeats(Query.Aggregate) returns (Count) { }
 }
 
 service HqsOperations {
-    rpc ReadPhysicalHqs(Query.Hqs) returns (PhysicalHqs) { }
-    rpc ReadSocialHqs(Query.Hqs) returns (SocialHqs) { }
-    rpc ReadDigitalHqs(Query.Hqs) returns (DigitalHqs) { }
+    rpc ReadPhysicalHqs(Query.Compare) returns (Hqs) { }
+    rpc ReadSocialHqs(Query.Compare) returns (Hqs) { }
+    rpc ReadDigitalHqs(Query.Compare) returns (Hqs) { }
 }
