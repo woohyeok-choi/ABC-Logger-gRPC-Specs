@@ -63,6 +63,8 @@ message Query {
         repeated string ref_app_version = 11;
         int64 from_timestamp = 12;
         int64 to_timestamp = 13;
+        int64 ref_from_timestamp = 14;
+        int64 ref_to_timestamp = 15;
     }
 }
 
