@@ -4,7 +4,6 @@ package kaist.iclab.abclogger;
 
 import "common.proto";
 import "aggregate.proto";
-import "data_type.proto";
 import "datum.proto";
 import "heart_beat.proto";
 import "hqs.proto";
@@ -16,7 +15,7 @@ option java_outer_classname = "ServiceProtos";
 
 message Query {
     message Read {
-        repeated DataType data_type = 1;
+        repeated Datum.Type datum_type = 1;
         repeated string group_name = 2;
         repeated string email = 3;
         repeated string instance_id = 4;
@@ -34,7 +33,7 @@ message Query {
     }
     
     message Aggregate {
-        repeated DataType data_type = 1;
+        repeated Datum.Type datum_type = 1;
         repeated string group_name = 2;
         repeated string email = 3;
         repeated string instance_id = 4;

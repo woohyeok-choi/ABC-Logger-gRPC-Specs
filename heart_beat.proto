@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package kaist.iclab.abclogger;
 
-import "data_type.proto";
+import "datum.proto";
 import "subject.proto";
 
 option java_package = "kaist.iclab.abclogger.grpc.proto";
@@ -18,7 +18,7 @@ message HeartBeat {
 message DataStatus {
     string name = 1;
     string qualified_name = 2;
-    DataType data_type = 3;
+    Datum.Type datum_type = 3;
     int64 turned_on_time = 4;
     int64 last_time_written = 5;
     int64 records_collected = 6;

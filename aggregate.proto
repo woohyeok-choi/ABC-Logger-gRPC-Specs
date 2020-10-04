@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package kaist.iclab.abclogger;
 
-import "data_type.proto";
+import "datum.proto";
 import "subject.proto";
 
 option java_package = "kaist.iclab.abclogger.grpc.proto";
@@ -19,7 +19,7 @@ message Statistic {
 }
 
 message Group {
-    DataType data_type = 1;
+    Datum.Type datum_type = 1;
     Subject subject = 2;
     double value = 3;
     int32 rank_percentile = 4;
