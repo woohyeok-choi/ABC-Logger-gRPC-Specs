@@ -46,12 +46,6 @@ message Query {
         repeated string app_version = 11;
         int64 from_timestamp = 12;
         int64 to_timestamp = 13;
-        
-        enum GroupBy {
-            ALL = 0;
-            SUBJECT = 1;
-            DATA_TYPE = 2;
-        }
     }
     
     message Compare {

@@ -2,11 +2,19 @@ syntax = "proto3";
 
 package kaist.iclab.abclogger;
 
-import "aggregate.proto";
-
 option java_package = "kaist.iclab.abclogger.grpc.proto";
 option java_outer_classname = "HqsProtos";
 
+
+message Statistic {
+    double mean = 1;
+    double std_dev = 2;
+    double min = 3;
+    double max = 4;
+    double median = 5;
+    double lower_quartile = 6;
+    double upper_quartile = 7;
+}
 
 message Hqs {
     Statistic statistic = 1;

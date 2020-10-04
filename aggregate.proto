@@ -8,24 +8,11 @@ import "subject.proto";
 option java_package = "kaist.iclab.abclogger.grpc.proto";
 option java_outer_classname = "AggregationProtos";
 
-message Statistic {
-    double mean = 1;
-    double std_dev = 2;
-    double min = 3;
-    double max = 4;
-    double median = 5;
-    double lower_quartile = 6;
-    double upper_quartile = 7;
-}
-
-message Group {
-    Datum.Type datum_type = 1;
-    Subject subject = 2;
-    double value = 3;
-    int32 rank_percentile = 4;
-}
-
 message Aggregation {
-    Statistic statistic = 1;
-    repeated Group group = 2;
+    message Group {
+        Datum.Type datum_type = 1;
+        Subject subject = 2;
+        double value = 3;
+    }
+    repeated Group group = 1;
 }
