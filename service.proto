@@ -105,7 +105,6 @@ service SubjectsOperations {
 service AggregateOperations {
     rpc CountSubjects(Query.Aggregate) returns (Aggregation) { }
     rpc CountData(Query.Aggregate) returns (Aggregation) { }
-    rpc CountHeartBeats(Query.Aggregate) returns (Aggregation) { }
 }
 
 service HqsOperations {
