@@ -6,7 +6,7 @@ option java_package = "kaist.iclab.abclogger.grpc.proto";
 option java_outer_classname = "DataTypeProtos";
 
 enum DataType {
-    NOT_DATA_TYPE = 0;
+    ALL = 0;
     PHYSICAL_ACTIVITY_TRANSITION = 1;
     PHYSICAL_ACTIVITY = 2;
     APP_USAGE_EVENT = 3;

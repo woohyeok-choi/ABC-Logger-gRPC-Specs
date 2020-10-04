@@ -3,7 +3,7 @@ syntax = "proto3";
 package kaist.iclab.abclogger;
 
 import "common.proto";
-import "count.proto";
+import "aggregate.proto";
 import "data_type.proto";
 import "datum.proto";
 import "heart_beat.proto";
@@ -47,6 +47,12 @@ message Query {
         repeated string app_version = 11;
         int64 from_timestamp = 12;
         int64 to_timestamp = 13;
+        
+        enum GroupBy {
+            ALL = 0;
+            SUBJECT = 1;
+            DATA_TYPE = 2;
+        }
     }
     
     message Compare {
@@ -104,13 +110,13 @@ service SubjectsOperations {
 }
 
 service AggregateOperations {
-    rpc CountSubjects(Query.Aggregate) returns (Count) { }
-    rpc CountData(Query.Aggregate) returns (Count) { }
-    rpc CountHeartBeats(Query.Aggregate) returns (Count) { }
+    rpc CountSubjects(Query.Aggregate) returns (Aggregation) { }
+    rpc CountData(Query.Aggregate) returns (Aggregation) { }
+    rpc CountHeartBeats(Query.Aggregate) returns (Aggregation) { }
 }
 
 service HqsOperations {
-    rpc ReadPhysicalHqs(Query.Compare) returns (Hqs) { }
-    rpc ReadSocialHqs(Query.Compare) returns (Hqs) { }
-    rpc ReadDigitalHqs(Query.Compare) returns (Hqs) { }
+    rpc ReadPhysicalHqs(Query.Compare) returns (PhysicalHqs) { }
+    rpc ReadSocialHqs(Query.Compare) returns (SocialHqs) { }
+    rpc ReadDigitalHqs(Query.Compare) returns (DigitalHqs) { }
 }

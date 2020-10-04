@@ -12,26 +12,24 @@ message HeartBeat {
     int64 timestamp = 1;
     int32 utc_offset_sec = 2;
     Subject subject = 3;
-    repeated Collector collector = 4;
-
-    message Collector {
-        string name = 1;
-        string qualified_name = 2;
-        DataType data_type = 3;
-        int64 turned_on_time = 4;
-        int64 last_time_written = 5;
-        int64 records_collected = 6;
-        int64 records_uploaded = 7;
-        Status status = 8;
-        string error = 9;    
-        map<string, string> others = 10;
-    }
-
-    enum Status {
-        NOT_SPECIFIED = 0;
-        ON = 1;
-        OFF = 2;
-        ERROR = 3;
-    }
+    repeated DataStatus data_status = 4;
 }
 
+message DataStatus {
+    string name = 1;
+    string qualified_name = 2;
+    DataType data_type = 3;
+    int64 turned_on_time = 4;
+    int64 last_time_written = 5;
+    int64 records_collected = 6;
+    int64 records_uploaded = 7;
+    Operation operation = 8;
+    string error = 9;    
+    map<string, string> others = 10;
+
+    enum Operation {
+        OFF = 0;
+        ON = 1;
+        ERROR = 2;
+    }
+}

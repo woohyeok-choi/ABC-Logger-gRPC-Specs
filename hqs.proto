@@ -2,58 +2,40 @@ syntax = "proto3";
 
 package kaist.iclab.abclogger;
 
-import "subject.proto";
+import "aggregate.proto";
 
 option java_package = "kaist.iclab.abclogger.grpc.proto";
 option java_outer_classname = "HqsProtos";
 
-message Score {
-    double value = 1;
-    double percentile = 2;
-    double mean = 3;
-    double std_dev = 4;
-    double min = 5;
-    double max = 6;    
-}
 
 message Hqs {
-    message Physical {
-        Score active_duration = 1;
-        Score inactive_duration = 2;
-        Score step_count = 3;
-        Score distance = 4;
-        Score calories = 5;
-    }
-    
-    message Social {
-        Score call_duration = 1;
-        Score message_count = 2;
-        Score social_app_duration = 3;
-    }
-    
-    message Digital {
-        repeated AppUsage app_usage = 1;
-        Score data_usage = 2;
-        Score phone_usage_duration = 3;
-        Score media_taken = 4;
-    
-        message AppUsage {
-            string type = 1;
-            Score duration = 2;
-        }
-    }
-
-    message Group {
-        Subject subject = 1;
-        oneof hqs {
-            Physical physical = 2;
-            Social digital = 3;
-            Digital social = 4;
-        }
-    }
-
-    repeated Group group = 1;
+    Statistic statistic = 1;
+    double value = 2;
+    int32 rank_percentile = 3;
 }
 
+message PhysicalHqs {
+    Hqs active_duration = 1;
+    Hqs inactive_duration = 2;
+    Hqs step_count = 3;
+    Hqs distance = 4;
+    Hqs calories = 5;
+}
 
+message SocialHqs {
+    Hqs call_duration = 1;
+    Hqs message_count = 2;
+    Hqs social_app_duration = 3;
+}
 
+message DigitalHqs {
+    repeated AppUsage app_usage = 1;
+    Hqs data_usage = 2;
+    Hqs phone_usage_duration = 3;
+    Hqs media_taken = 4;
+
+    message AppUsage {
+        string type = 1;
+        Hqs duration = 2;
+    }
+}
