@@ -10,7 +10,7 @@ option java_outer_classname = "AggregationProtos";
 
 message Aggregation {
     message Group {
-        Datum.Type datum_type = 1;
+        DatumType datum_type = 1;
         Subject subject = 2;
         double value = 3;
     }

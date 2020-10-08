@@ -18,7 +18,7 @@ message HeartBeat {
 message DataStatus {
     string name = 1;
     string qualified_name = 2;
-    Datum.Type datum_type = 3;
+    DatumType datum_type = 3;
     int64 turned_on_time = 4;
     int64 last_time_written = 5;
     int64 records_collected = 6;
@@ -26,10 +26,10 @@ message DataStatus {
     Operation operation = 8;
     string error = 9;    
     map<string, string> others = 10;
+}
 
-    enum Operation {
-        OFF = 0;
-        ON = 1;
-        ERROR = 2;
-    }
+enum Operation {
+    OFF = 0;
+    ON = 1;
+    ERROR = 2;
 }

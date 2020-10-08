@@ -15,7 +15,7 @@ option java_outer_classname = "ServiceProtos";
 
 message Query {
     message Read {
-        repeated Datum.Type datum_type = 1;
+        repeated DatumType datum_type = 1;
         repeated string group_name = 2;
         repeated string email = 3;
         repeated string instance_id = 4;
@@ -33,7 +33,7 @@ message Query {
     }
     
     message Aggregate {
-        repeated Datum.Type datum_type = 1;
+        repeated DatumType datum_type = 1;
         repeated string group_name = 2;
         repeated string email = 3;
         repeated string instance_id = 4;
