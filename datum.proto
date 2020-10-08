@@ -142,20 +142,26 @@ message Notification {
     string package_name = 2;
     bool is_system_app = 3;
     bool is_updated_system_app = 4;
-    string title = 5;
-    string big_title = 6;
-    string text = 7;
-    string sub_text = 8;
-    string big_text = 9;
-    string summary_text = 10;
-    string info_text = 11;
-    string visibility = 12;
-    string category = 13;
-    string priority = 14;
-    string vibrate = 15;
-    string sound = 16;
-    string light_color = 17;
-    bool is_posted = 18;
+    string key = 5;
+    string groupKey = 6;
+    int32 notificationId = 7;
+    string tag = 8;
+    bool isClearable = 9;
+    bool isOngoing = 10;
+    string title = 11;
+    string big_title = 12;
+    string text = 13;
+    string sub_text = 14;
+    string big_text = 15;
+    string summary_text = 16;
+    string info_text = 17;
+    string visibility = 18;
+    string category = 19;
+    string priority = 20;
+    string vibrate = 21;
+    string sound = 22;
+    string light_color = 23;
+    bool is_posted = 24;
 }
 
 message Fitness {
