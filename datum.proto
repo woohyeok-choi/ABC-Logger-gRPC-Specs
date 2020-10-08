@@ -84,10 +84,10 @@ message ExternalSensor {
     string device_type = 1;
     string value_type = 2;
     string identifier = 3;
-    map<string, string> status = 4;
-    string value_format = 5;
-    string value_unit = 6;
-    repeated string value = 7;
+    string value_format = 4;
+    string value_unit = 5;
+    repeated string value = 6;
+    map<string, string> others = 7;
 }
 
 message InstalledApp {
