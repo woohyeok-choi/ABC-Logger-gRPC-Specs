@@ -1,1 +1,1 @@
-## ABC Platform Grpc Spec
+# ABC Platform Grpc Spec
