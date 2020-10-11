@@ -13,6 +13,8 @@ message Aggregation {
         DatumType datum_type = 1;
         Subject subject = 2;
         double value = 3;
+        int64 first_timestamp = 4;
+        int64 last_timestamp = 5;
     }
     repeated Group group = 1;
 }
